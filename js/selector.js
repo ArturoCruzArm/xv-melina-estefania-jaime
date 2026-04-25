@@ -274,7 +274,7 @@ const CONFIG = {
     nombre:             (window.EVENT_CONFIG && window.EVENT_CONFIG.nombre)             || 'Melina Estefanía Jaime Romo',
     telefono:           (window.EVENT_CONFIG && window.EVENT_CONFIG.telefono)           || '',
     fechaEvento:        (window.EVENT_CONFIG && window.EVENT_CONFIG.fechaEvento)        || new Date(2026, 2, 28, 17, 0, 0),
-    limiteImpresion:    200,
+    limiteImpresion:    80,
     limiteInvitacion:   null,
     costoFotoAdicional: (window.EVENT_CONFIG && window.EVENT_CONFIG.costoFotoAdicional) || 15,
 };
