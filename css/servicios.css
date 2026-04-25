@@ -1,0 +1,8 @@
+.service-header { padding: 30px; border-radius: 15px; color: white; text-align: center; margin-bottom: 30px; }
+.service-header .service-icon { font-size: 3rem; margin-bottom: 15px; }
+.service-header h1 { font-size: 2rem; margin-bottom: 10px; }
+.service-header p { opacity: 0.9; font-size: 1.1rem; }
+.service-section { background: white; border-radius: 15px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+.service-section h2 { font-size: 1.5rem; color: #2d3436; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #dfe6e9; display: flex; align-items: center; gap: 10px; }
+.btn-back { display: inline-block; padding: 10px 20px; background: #f8f9fa; color: #636e72; border-radius: 25px; text-decoration: none; margin-bottom: 20px; transition: all 0.3s; font-size: 0.9rem; }
+.btn-back:hover { background: #dfe6e9; transform: translateY(-2px); }
