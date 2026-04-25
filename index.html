@@ -435,21 +435,9 @@
         var overlay = document.getElementById('intro-overlay');
         if (!overlay) return;
 
-        var today = new Date().toDateString();
-        if (localStorage.getItem('foro7_intro_melina') === today) {
-            overlay.style.display = 'none';
-            document.addEventListener('click', function startAudio(){
-                var a = document.getElementById('bgMusic');
-                if(a && !window._bgMusicPlaying){ a.play().then(function(){ var b=document.getElementById('musicToggle'); if(b) b.style.opacity='1'; window._bgMusicPlaying=true; }).catch(function(){}); }
-                document.removeEventListener('click', startAudio);
-            });
-            return;
-        }
-
         function dismissIntro() {
             overlay.classList.add('fade-out');
             setTimeout(function() { overlay.style.display = 'none'; }, 1200);
-            localStorage.setItem('foro7_intro_melina', today);
             var a = document.getElementById('bgMusic');
             if(a){ a.play().then(function(){ var b=document.getElementById('musicToggle'); if(b) b.style.opacity='1'; window._bgMusicPlaying=true; }).catch(function(){}); }
         }
