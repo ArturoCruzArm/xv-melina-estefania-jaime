@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banquete - XV Anos de Melina Estefanía Jaime Romo</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/contrato.css?v=1">
+    <style>
+        .menu-cards { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 15px; }
+        .menu-card { background: #f0fdfa; border: 2px solid #5eead4; border-radius: 10px; overflow: hidden; }
+        .menu-card-header { background: #0d9488; color: #fff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .menu-card-header h3 { margin: 0; font-size: 1.1rem; }
+        .menu-card-price { font-size: 1.3rem; font-weight: 700; }
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .menu-col { padding: 15px 20px; }
+        .menu-col:first-child { border-right: 1px solid #e0e0e0; }
+        .menu-col h4 { color: #0d9488; margin-bottom: 10px; font-size: 0.95rem; }
+        .menu-col ul { list-style: none; padding: 0; }
+        .menu-col ul li { padding: 5px 0; padding-left: 22px; position: relative; color: #333; font-size: 0.9rem; }
+        .menu-col ul li::before { content: "🍽"; position: absolute; left: 0; font-size: 0.8rem; }
+        .menu-col.ninos ul li::before { content: "🧒"; }
+        .adicionales-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .adicionales-table th, .adicionales-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #ddd; font-size: 0.9rem; }
+        .adicionales-table th { background: #0d9488; color: #fff; }
+        .adicionales-table .total-row td { font-weight: 700; background: #f0fdfa; font-size: 1rem; }
+        .resumen-box { background: #f0fdfa; border: 2px solid #0d9488; border-radius: 10px; padding: 20px; margin-top: 15px; }
+        .resumen-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0; font-size: 1rem; }
+        .resumen-row:last-child { border-bottom: none; font-size: 1.2rem; font-weight: 700; color: #0d9488; }
+        .degustacion-box { background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 8px; padding: 15px 20px; margin-top: 20px; }
+        .degustacion-box h3 { color: #2e7d32; margin-bottom: 8px; }
+        .wa-btn { display: inline-block; background: #25D366; color: #fff; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: 700; margin-top: 15px; transition: all 0.3s; }
+        .wa-btn:hover { background: #1da851; transform: translateY(-2px); }
+        .condiciones-box { background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 8px; padding: 15px 20px; margin-top: 20px; font-size: 0.88rem; color: #666; }
+        .condiciones-box ul { padding-left: 18px; }
+        .condiciones-box li { margin-bottom: 6px; }
+        @media (max-width: 600px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .menu-col:first-child { border-right: none; border-bottom: 1px solid #e0e0e0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="company-name">FORO 7 BANQUETES</div>
+            <div class="company-subtitle">Cotizacion de Banquete para Evento Social</div>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Invitacion</a>
+            <a href="contrato.html">Contrato</a>
+            <a href="logistica.html">Logistica</a>
+            <a href="selector.html">Fotos</a>
+            <a href="invitados.html">Invitados</a>
+            <a href="banquete.html" class="active">Banquete</a>
+            <a href="datos.html">Datos</a>
+        </div>
+
+        <h1 class="contract-title">COTIZACION BANQUETE &mdash; 200 PERSONAS</h1>
+
+        <div class="section">
+            <h2 class="section-title">Datos Generales</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Evento:</div>
+                    <div class="info-value">XV Anos de Melina Estefanía Jaime Romo</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Fecha:</div>
+                    <div class="info-value">Sábado 6 de Junio, 2026</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Invitados:</div>
+                    <div class="info-value">200 personas<br><small>150 adultos + 50 ninos</small></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Lugar:</div>
+                    <div class="info-value">Quinta La Chapis<br><small>León, Guanajuato</small></div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Comida:</div>
+                    <div class="info-value">3 tiempos</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Loza:</div>
+                    <div class="info-value">La proporciona el cliente</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Llegada invitados:</div>
+                    <div class="info-value">5:30 PM</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Servicio de bebidas:</div>
+                    <div class="info-value">6 horas</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Opciones de Menu</h2>
+            <div class="menu-cards">
+                <!-- Opcion 1 -->
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <h3>Opcion 1 &mdash; Pollo en Crema</h3>
+                        <span class="menu-card-price">$17,500</span>
+                    </div>
+                    <div class="menu-grid">
+                        <div class="menu-col">
+                            <h4>Menu Adultos &mdash; 150 personas</h4>
+                            <ul>
+                                <li>Entrada de recepcion desde las 5:30 pm: seleccion de canapes sencillos y botana fina al centro de mesa</li>
+                                <li>Sopa: crema de verduras o sopa de fideo seco</li>
+                                <li>Plato fuerte: pollo en crema de champinon con espagueti blanco y ensalada sencilla</li>
+                            </ul>
+                        </div>
+                        <div class="menu-col ninos">
+                            <h4>Menu Ninos &mdash; 50 personas</h4>
+                            <ul>
+                                <li>Entrada de recepcion infantil desde las 5:30 pm</li>
+                                <li>Sopa de fideo</li>
+                                <li>Nuggets o tiras de pollo con pasta cremosa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opcion 2 -->
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <h3>Opcion 2 &mdash; Pierna o Lomo de Cerdo</h3>
+                        <span class="menu-card-price">$17,500</span>
+                    </div>
+                    <div class="menu-grid">
+                        <div class="menu-col">
+                            <h4>Menu Adultos &mdash; 150 personas</h4>
+                            <ul>
+                                <li>Entrada de recepcion desde las 5:30 pm: seleccion de canapes sencillos y botana fina al centro de mesa</li>
+                                <li>Sopa o entrada: ensalada sencilla o crema de elote</li>
+                                <li>Plato fuerte: pierna o lomo de cerdo en adobo o gravy con arroz jardinera y ensalada</li>
+                            </ul>
+                        </div>
+                        <div class="menu-col ninos">
+                            <h4>Menu Ninos &mdash; 50 personas</h4>
+                            <ul>
+                                <li>Entrada de recepcion infantil desde las 5:30 pm</li>
+                                <li>Sopa de pasta</li>
+                                <li>Salchicha botanera o rollitos de jamon con pasta roja o crema</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opcion 3 -->
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <h3>Opcion 3 &mdash; Pasta Cremosa con Pollo</h3>
+                        <span class="menu-card-price">$17,500</span>
+                    </div>
+                    <div class="menu-grid">
+                        <div class="menu-col">
+                            <h4>Menu Adultos &mdash; 150 personas</h4>
+                            <ul>
+                                <li>Entrada de recepcion desde las 5:30 pm: seleccion de canapes sencillos y botana fina al centro de mesa</li>
+                                <li>Sopa: sopa de tortilla economica o crema de zanahoria</li>
+                                <li>Plato fuerte: pasta cremosa con pollo, ensalada fresca y pan</li>
+                            </ul>
+                        </div>
+                        <div class="menu-col ninos">
+                            <h4>Menu Ninos &mdash; 50 personas</h4>
+                            <ul>
+                                <li>Entrada de recepcion infantil desde las 5:30 pm</li>
+                                <li>Codito con crema o sopa de fideo</li>
+                                <li>Pasta Alfredo con pollo o milanesa chica con pasta</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Servicios Adicionales</h2>
+            <table class="adicionales-table">
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Detalle</th>
+                        <th style="text-align:right">Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bebidas por 6 horas</strong></td>
+                        <td>Coca-Cola 3L, Squirt 2L, agua mineral 2L, 1 vitrolero de jamaica 20L, 1 vitrolero de horchata 20L, 3 garrafones de agua pura y hielo</td>
+                        <td style="text-align:right">$8,386</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Personal de servicio con Servibar</strong></td>
+                        <td>8 meseros y 1 capitan por 6 horas de servicio</td>
+                        <td style="text-align:right">$6,960</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Traslado</strong></td>
+                        <td>Salon a 45 km de distancia. Considera traslado redondo y logistica de servicio</td>
+                        <td style="text-align:right">$2,160</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2">Total servicios adicionales</td>
+                        <td style="text-align:right">$17,506</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Resumen</h2>
+            <div class="resumen-box">
+                <div class="resumen-row">
+                    <span>Banquete 3 tiempos para 200 personas</span>
+                    <span>$17,500</span>
+                </div>
+                <div class="resumen-row">
+                    <span>Bebidas, personal y traslado</span>
+                    <span>$17,506</span>
+                </div>
+                <div class="resumen-row">
+                    <span>TOTAL GENERAL</span>
+                    <span>$35,006</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="degustacion-box">
+                <h3>Degustacion</h3>
+                <p>La degustacion tiene un costo de <strong>$1,500</strong> para hasta <strong>6 personas</strong>.</p>
+                <p>Si se confirma el evento, ese importe se toma a cuenta del anticipo.</p>
+                <p>Despues de la degustacion podemos ajustar detalles del menu y revisar la propuesta final.</p>
+                <a href="https://wa.me/5213141249757?text=Hola%2C%20me%20interesa%20agendar%20la%20degustaci%C3%B3n%20para%20el%20XV%20de%20Melina%20Estefan%C3%ADa%20(6%20de%20junio%202026)" class="wa-btn" target="_blank">
+                    📲 Agendar Degustacion por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="condiciones-box">
+                <strong>Condiciones:</strong>
+                <ul>
+                    <li>La loza, cubiertos, vasos o copas seran proporcionados por el cliente. No incluye manteleria, mesas, sillas, decoracion, renta de loza ni lavado profundo de loza.</li>
+                    <li>El precio considera 200 personas: 150 adultos y 50 ninos.</li>
+                    <li>La entrada de recepcion con canapes sencillos y botana fina al centro de mesa se considera para recibir invitados desde las 5:30 pm.</li>
+                    <li>Cambios de menu, aumento de invitados, horas extra o bebidas adicionales se cotizan por separado.</li>
+                    <li>Para apartar fecha se requiere anticipo del 50%. El resto se liquida antes o al inicio del evento, segun acuerdo.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="js/visitas.js?v=2"></script>
+    <script src="js/foro7-footer.js"></script>
+</body>
+</html>
