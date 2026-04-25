@@ -438,6 +438,11 @@
         var today = new Date().toDateString();
         if (localStorage.getItem('foro7_intro_melina') === today) {
             overlay.style.display = 'none';
+            document.addEventListener('click', function startAudio(){
+                var a = document.getElementById('bgMusic');
+                if(a && !window._bgMusicPlaying){ a.play().then(function(){ var b=document.getElementById('musicToggle'); if(b) b.style.opacity='1'; window._bgMusicPlaying=true; }).catch(function(){}); }
+                document.removeEventListener('click', startAudio);
+            });
             return;
         }
 
@@ -445,6 +450,8 @@
             overlay.classList.add('fade-out');
             setTimeout(function() { overlay.style.display = 'none'; }, 1200);
             localStorage.setItem('foro7_intro_melina', today);
+            var a = document.getElementById('bgMusic');
+            if(a){ a.play().then(function(){ var b=document.getElementById('musicToggle'); if(b) b.style.opacity='1'; window._bgMusicPlaying=true; }).catch(function(){}); }
         }
 
         var autoTimer = setTimeout(dismissIntro, 7500);
@@ -520,14 +527,10 @@
     (function(){
         const audio = document.getElementById('bgMusic');
         const btn = document.getElementById('musicToggle');
-        let playing = false;
+        Object.defineProperty(window,'_bgMusicPlaying',{set(v){this.__mp=v;},get(){return this.__mp||false;},configurable:true});
         btn.addEventListener('click', function(){
-            if(playing){ audio.pause(); btn.style.opacity='0.6'; playing=false; }
-            else { audio.play().catch(()=>{}); btn.style.opacity='1'; playing=true; }
-        });
-        document.addEventListener('click', function startAudio(){
-            if(!playing){ audio.play().then(()=>{ playing=true; btn.style.opacity='1'; }).catch(()=>{}); }
-            document.removeEventListener('click', startAudio);
+            if(window._bgMusicPlaying){ audio.pause(); btn.style.opacity='0.6'; window._bgMusicPlaying=false; }
+            else { audio.play().catch(()=>{}); btn.style.opacity='1'; window._bgMusicPlaying=true; }
         });
     })();
     </script>
