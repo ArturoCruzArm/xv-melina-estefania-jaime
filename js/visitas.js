@@ -1,8 +1,8 @@
-// Contador de visitas - XV Años Melina Estefanía Jaime Romo
+// Contador de visitas - Foro 7
 (function () {
     const SUPABASE_URL = 'https://nzpujmlienzfetqcgsxz.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
-    const EVENTO_SLUG = 'xv-melina-estefania-jaime';
+    const EVENTO_SLUG = window.EVENTO_SLUG || 'boda-refugio-juan-jesus';
     const SB_H = { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`, 'Content-Type': 'application/json' };
 
     const SESSION_KEY = 'foro7_sid';
@@ -10,9 +10,7 @@
     if (!sid) { sid = crypto.randomUUID(); localStorage.setItem(SESSION_KEY, sid); }
 
     const pagina = (location.pathname.split('/').pop().replace('.html', '') || 'index').toLowerCase();
-    const isSelector = pagina === 'selector';
 
-    // Inject floating counter widget
     const widget = document.createElement('div');
     widget.id = 'foro7-visit-counter';
     widget.style.cssText = [
@@ -22,7 +20,7 @@
         'z-index:9000', 'pointer-events:none', 'font-family:sans-serif',
         'letter-spacing:0.04em', 'backdrop-filter:blur(4px)'
     ].join(';');
-    widget.textContent = '\uD83D\uDC41 \u2026';
+    widget.textContent = '\u{1F441} \u2026';
 
     async function init() {
         try {
@@ -31,23 +29,19 @@
             const evento_id = ev?.id;
             if (!evento_id) return;
 
-            // Register visit only for non-selector pages (selector.js handles selector)
-            if (!isSelector) {
-                fetch(`${SUPABASE_URL}/rest/v1/visitas`, {
-                    method: 'POST',
-                    headers: { ...SB_H, 'Prefer': 'return=minimal' },
-                    body: JSON.stringify({ evento_id, pagina, session_id: sid })
-                }).catch(() => {});
-            }
+            fetch(`${SUPABASE_URL}/rest/v1/visitas`, {
+                method: 'POST',
+                headers: { ...SB_H, 'Prefer': 'return=minimal' },
+                body: JSON.stringify({ evento_id, pagina, session_id: sid })
+            }).catch(() => {});
 
-            // Contar visitas: fetch array y medir longitud
             const cr = await fetch(
                 `${SUPABASE_URL}/rest/v1/visitas?evento_id=eq.${evento_id}&pagina=eq.${pagina}&select=id`,
                 { headers: SB_H }
             );
             const rows = await cr.json();
             const count = Array.isArray(rows) ? rows.length : 0;
-            widget.textContent = `\uD83D\uDC41 ${count.toLocaleString('es-MX')}`;
+            widget.textContent = `\u{1F441} ${count.toLocaleString('es-MX')}`;
         } catch (e) {
             widget.remove();
         }

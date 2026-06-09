@@ -1,466 +1,83 @@
 // ========================================
-// SUPABASE CONFIG
+// GLOBAL VARIABLES
 // ========================================
-const SUPABASE_URL  = 'https://nzpujmlienzfetqcgsxz.supabase.co';
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
-const EVENTO_SLUG   = 'xv-melina-estefania-jaime';
-const SB_HEADERS    = { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`, 'Content-Type': 'application/json' };
+const photos = ['imagenes/DJI_20260606153815_0242_D.webp', 'imagenes/DJI_20260606153819_0243_D.webp', 'imagenes/DJI_20260606153822_0244_D.webp', 'imagenes/DJI_20260606153825_0245_D.webp', 'imagenes/DJI_20260606153911_0246_D.webp', 'imagenes/DJI_20260606153913_0247_D.webp', 'imagenes/DJI_20260606153947_0248_D.webp', 'imagenes/DJI_20260606153954_0249_D.webp', 'imagenes/DJI_20260606153959_0250_D.webp', 'imagenes/DJI_20260606154001_0251_D.webp', 'imagenes/DJI_20260606154053_0252_D.webp', 'imagenes/DJI_20260606154058_0253_D.webp', 'imagenes/DJI_20260606154101_0254_D.webp', 'imagenes/DJI_20260606154105_0255_D.webp', 'imagenes/DJI_20260606154107_0256_D.webp', 'imagenes/DJI_20260606154139_0257_D.webp', 'imagenes/DJI_20260606154153_0258_D.webp', 'imagenes/DJI_20260606154154_0259_D.webp', 'imagenes/DJI_20260606154306_0260_D.webp', 'imagenes/DJI_20260606154308_0261_D.webp', 'imagenes/DJI_20260606154330_0262_D.webp', 'imagenes/DJI_20260606154333_0263_D.webp', 'imagenes/DJI_20260606154337_0264_D.webp', 'imagenes/DJI_20260606154338_0265_D.webp', 'imagenes/DJI_20260606154341_0266_D.webp', 'imagenes/DJI_20260606154346_0267_D.webp', 'imagenes/DJI_20260606154351_0268_D.webp', 'imagenes/DJI_20260606154402_0269_D.webp', 'imagenes/DJI_20260606154403_0270_D.webp', 'imagenes/DJI_20260606154414_0271_D.webp', 'imagenes/DJI_20260606154416_0272_D.webp', 'imagenes/DJI_20260606154807_0277_D.webp', 'imagenes/DJI_20260606154808_0278_D.webp', 'imagenes/DJI_20260606174426_0279_D.webp', 'imagenes/DSC_2371.webp', 'imagenes/DSC_2372.webp', 'imagenes/DSC_2373.webp', 'imagenes/DSC_2374.webp', 'imagenes/DSC_2375.webp', 'imagenes/DSC_2376.webp', 'imagenes/DSC_2377.webp', 'imagenes/DSC_2378.webp', 'imagenes/DSC_2379.webp', 'imagenes/DSC_2380.webp', 'imagenes/DSC_2381.webp', 'imagenes/DSC_2382.webp', 'imagenes/DSC_2383.webp', 'imagenes/DSC_2386.webp', 'imagenes/DSC_2387.webp', 'imagenes/DSC_2388.webp', 'imagenes/DSC_2389.webp', 'imagenes/DSC_2390.webp', 'imagenes/DSC_2391.webp', 'imagenes/DSC_2392.webp', 'imagenes/DSC_2393.webp', 'imagenes/DSC_2394.webp', 'imagenes/DSC_2395.webp', 'imagenes/DSC_2396.webp', 'imagenes/DSC_2397.webp', 'imagenes/DSC_2398.webp', 'imagenes/DSC_2399.webp', 'imagenes/DSC_2400.webp', 'imagenes/DSC_2401.webp', 'imagenes/DSC_2402.webp', 'imagenes/DSC_2403.webp', 'imagenes/DSC_2404.webp', 'imagenes/DSC_2405.webp', 'imagenes/DSC_2406.webp', 'imagenes/DSC_2407.webp', 'imagenes/DSC_2408.webp', 'imagenes/DSC_2409.webp', 'imagenes/DSC_2410.webp', 'imagenes/DSC_2411.webp', 'imagenes/DSC_2412.webp', 'imagenes/DSC_2413.webp', 'imagenes/DSC_2414.webp', 'imagenes/DSC_2415.webp', 'imagenes/DSC_2416.webp', 'imagenes/DSC_2418.webp', 'imagenes/DSC_2419.webp', 'imagenes/DSC_2420.webp', 'imagenes/DSC_2421.webp', 'imagenes/DSC_2422.webp', 'imagenes/DSC_2424.webp', 'imagenes/DSC_2427.webp', 'imagenes/DSC_2428.webp', 'imagenes/DSC_2430.webp', 'imagenes/DSC_2431.webp', 'imagenes/DSC_2432.webp', 'imagenes/DSC_2433.webp', 'imagenes/DSC_2434.webp', 'imagenes/DSC_2435.webp', 'imagenes/DSC_2436.webp', 'imagenes/DSC_2437.webp', 'imagenes/DSC_2438.webp', 'imagenes/DSC_2439.webp', 'imagenes/DSC_2440.webp', 'imagenes/DSC_2441.webp', 'imagenes/DSC_2442.webp', 'imagenes/DSC_2443.webp', 'imagenes/DSC_2444.webp', 'imagenes/DSC_2445.webp', 'imagenes/DSC_2446.webp', 'imagenes/DSC_2447.webp', 'imagenes/DSC_2448.webp', 'imagenes/DSC_2449.webp', 'imagenes/DSC_2450.webp', 'imagenes/DSC_2451.webp', 'imagenes/DSC_2452.webp', 'imagenes/DSC_2453.webp', 'imagenes/DSC_2454.webp', 'imagenes/DSC_2455.webp', 'imagenes/DSC_2456.webp', 'imagenes/DSC_2457.webp', 'imagenes/DSC_2458.webp', 'imagenes/DSC_2459.webp', 'imagenes/DSC_2460.webp', 'imagenes/DSC_2461.webp', 'imagenes/DSC_2462.webp', 'imagenes/DSC_2463.webp', 'imagenes/DSC_2464.webp', 'imagenes/DSC_2465.webp', 'imagenes/DSC_2466.webp', 'imagenes/DSC_2467.webp', 'imagenes/DSC_2468.webp', 'imagenes/DSC_2469.webp', 'imagenes/DSC_2470.webp', 'imagenes/DSC_2471.webp', 'imagenes/DSC_2472.webp', 'imagenes/DSC_2473.webp', 'imagenes/DSC_2474.webp', 'imagenes/DSC_2475.webp', 'imagenes/DSC_2476.webp', 'imagenes/DSC_2477.webp', 'imagenes/DSC_2478.webp', 'imagenes/DSC_2479.webp', 'imagenes/DSC_2480.webp', 'imagenes/DSC_2481.webp', 'imagenes/DSC_2482.webp', 'imagenes/DSC_2484.webp', 'imagenes/DSC_2485.webp', 'imagenes/DSC_2486.webp', 'imagenes/DSC_2487.webp', 'imagenes/DSC_2488.webp', 'imagenes/DSC_2489.webp', 'imagenes/DSC_2490.webp', 'imagenes/DSC_2491.webp', 'imagenes/DSC_2492.webp', 'imagenes/DSC_2493.webp', 'imagenes/DSC_2494.webp', 'imagenes/DSC_2495.webp', 'imagenes/DSC_2496.webp', 'imagenes/DSC_2497.webp', 'imagenes/DSC_2498.webp', 'imagenes/DSC_2499.webp', 'imagenes/DSC_2500.webp', 'imagenes/DSC_2501.webp', 'imagenes/DSC_2502.webp', 'imagenes/DSC_2503.webp', 'imagenes/DSC_2504.webp', 'imagenes/DSC_2505.webp', 'imagenes/DSC_2506.webp', 'imagenes/DSC_2507.webp', 'imagenes/DSC_2508.webp', 'imagenes/DSC_2509.webp', 'imagenes/DSC_2510.webp', 'imagenes/DSC_2511.webp', 'imagenes/DSC_2512.webp', 'imagenes/DSC_2513.webp', 'imagenes/DSC_2514.webp', 'imagenes/DSC_2515.webp', 'imagenes/DSC_2516.webp', 'imagenes/DSC_2517.webp', 'imagenes/DSC_2518.webp', 'imagenes/DSC_2519.webp', 'imagenes/DSC_2520.webp', 'imagenes/DSC_2521.webp', 'imagenes/DSC_2522.webp', 'imagenes/DSC_2523.webp', 'imagenes/DSC_2524.webp', 'imagenes/DSC_2525.webp', 'imagenes/DSC_2526.webp', 'imagenes/DSC_2527.webp', 'imagenes/DSC_2528.webp', 'imagenes/DSC_2529.webp', 'imagenes/DSC_2530.webp', 'imagenes/DSC_2531.webp', 'imagenes/DSC_2532.webp', 'imagenes/DSC_2533.webp', 'imagenes/DSC_2534.webp', 'imagenes/DSC_2535.webp', 'imagenes/DSC_2536.webp', 'imagenes/DSC_2537.webp', 'imagenes/DSC_2538.webp', 'imagenes/DSC_2539.webp', 'imagenes/DSC_2540.webp', 'imagenes/DSC_2541.webp', 'imagenes/DSC_2542.webp', 'imagenes/DSC_2543.webp', 'imagenes/DSC_2544.webp', 'imagenes/DSC_2545.webp', 'imagenes/DSC_2546.webp', 'imagenes/DSC_2547.webp', 'imagenes/DSC_2548.webp', 'imagenes/DSC_2549.webp', 'imagenes/DSC_2550.webp', 'imagenes/DSC_2551.webp', 'imagenes/DSC_2552.webp', 'imagenes/DSC_2553.webp', 'imagenes/DSC_2554.webp', 'imagenes/DSC_2555.webp', 'imagenes/DSC_2556.webp', 'imagenes/DSC_2558.webp', 'imagenes/DSC_2559.webp', 'imagenes/DSC_2560.webp', 'imagenes/DSC_2561.webp', 'imagenes/DSC_2562.webp', 'imagenes/DSC_2563.webp', 'imagenes/DSC_2564.webp', 'imagenes/DSC_2565.webp', 'imagenes/DSC_2566.webp', 'imagenes/DSC_2567.webp', 'imagenes/DSC_2568.webp', 'imagenes/DSC_2569.webp', 'imagenes/DSC_2571.webp', 'imagenes/DSC_2572.webp', 'imagenes/DSC_2573.webp', 'imagenes/DSC_2574.webp', 'imagenes/DSC_2575.webp', 'imagenes/DSC_2576.webp', 'imagenes/DSC_2577.webp', 'imagenes/DSC_2578.webp', 'imagenes/DSC_2579.webp', 'imagenes/DSC_2580.webp', 'imagenes/DSC_2581.webp', 'imagenes/DSC_2582.webp', 'imagenes/DSC_2583.webp', 'imagenes/DSC_2584.webp', 'imagenes/DSC_2585.webp', 'imagenes/DSC_2586.webp', 'imagenes/DSC_2587.webp', 'imagenes/DSC_2588.webp', 'imagenes/DSC_2589.webp', 'imagenes/DSC_2590.webp', 'imagenes/DSC_2591.webp', 'imagenes/DSC_2592.webp', 'imagenes/DSC_2593.webp', 'imagenes/DSC_2594.webp', 'imagenes/DSC_2595.webp', 'imagenes/DSC_2596.webp', 'imagenes/DSC_2597.webp', 'imagenes/DSC_2598.webp', 'imagenes/DSC_2599.webp', 'imagenes/DSC_2600.webp', 'imagenes/DSC_2601.webp', 'imagenes/DSC_2602.webp', 'imagenes/DSC_2603.webp', 'imagenes/DSC_2604.webp', 'imagenes/DSC_2605.webp', 'imagenes/DSC_2606.webp', 'imagenes/DSC_2607.webp', 'imagenes/DSC_2608.webp', 'imagenes/DSC_2609.webp', 'imagenes/DSC_2610.webp', 'imagenes/DSC_2611.webp', 'imagenes/DSC_2612.webp', 'imagenes/DSC_2613.webp', 'imagenes/DSC_2614.webp', 'imagenes/DSC_2615.webp', 'imagenes/DSC_2616.webp', 'imagenes/DSC_2617.webp', 'imagenes/DSC_2618.webp', 'imagenes/DSC_2619.webp', 'imagenes/DSC_2620.webp', 'imagenes/DSC_2621.webp', 'imagenes/DSC_2622.webp', 'imagenes/DSC_2623.webp', 'imagenes/DSC_2624.webp', 'imagenes/DSC_2625.webp', 'imagenes/DSC_2626.webp', 'imagenes/DSC_2627.webp', 'imagenes/DSC_2628.webp', 'imagenes/DSC_2629.webp', 'imagenes/DSC_2630.webp', 'imagenes/DSC_2631.webp', 'imagenes/DSC_2632.webp', 'imagenes/DSC_2633.webp', 'imagenes/DSC_2634.webp', 'imagenes/DSC_2635.webp', 'imagenes/DSC_2636.webp', 'imagenes/DSC_2637.webp', 'imagenes/DSC_2638.webp', 'imagenes/DSC_2639.webp', 'imagenes/DSC_2641.webp', 'imagenes/DSC_2642.webp', 'imagenes/DSC_2643.webp', 'imagenes/DSC_2644.webp', 'imagenes/DSC_2645.webp', 'imagenes/DSC_2646.webp', 'imagenes/DSC_2647.webp', 'imagenes/DSC_2648.webp', 'imagenes/DSC_2649.webp', 'imagenes/DSC_2650.webp', 'imagenes/DSC_2651.webp', 'imagenes/DSC_2652.webp', 'imagenes/DSC_2653.webp', 'imagenes/DSC_2654.webp', 'imagenes/DSC_2655.webp', 'imagenes/DSC_2656.webp', 'imagenes/DSC_2657.webp', 'imagenes/DSC_2658.webp', 'imagenes/DSC_2659.webp', 'imagenes/DSC_2660.webp', 'imagenes/DSC_2661.webp', 'imagenes/DSC_2662.webp', 'imagenes/DSC_2663.webp', 'imagenes/DSC_2664.webp', 'imagenes/DSC_2665.webp', 'imagenes/DSC_2666.webp', 'imagenes/DSC_2667.webp', 'imagenes/DSC_2668.webp', 'imagenes/DSC_2669.webp', 'imagenes/DSC_2670.webp', 'imagenes/DSC_2671.webp', 'imagenes/DSC_2672.webp', 'imagenes/DSC_2673.webp', 'imagenes/DSC_2674.webp', 'imagenes/DSC_2675.webp', 'imagenes/DSC_2676.webp', 'imagenes/DSC_2677.webp', 'imagenes/DSC_2678.webp', 'imagenes/DSC_2679.webp', 'imagenes/DSC_2680.webp', 'imagenes/DSC_2681.webp', 'imagenes/DSC_2682.webp', 'imagenes/DSC_2683.webp', 'imagenes/DSC_2684.webp', 'imagenes/DSC_2685.webp', 'imagenes/DSC_2686.webp', 'imagenes/DSC_2687.webp', 'imagenes/DSC_2688.webp', 'imagenes/DSC_2689.webp', 'imagenes/DSC_2690.webp', 'imagenes/DSC_2691.webp', 'imagenes/DSC_2692.webp', 'imagenes/DSC_2693.webp', 'imagenes/DSC_2694.webp', 'imagenes/DSC_2695.webp', 'imagenes/DSC_2696.webp', 'imagenes/DSC_2697.webp', 'imagenes/DSC_2698.webp', 'imagenes/DSC_2699.webp', 'imagenes/DSC_2700.webp', 'imagenes/DSC_2701.webp', 'imagenes/DSC_2702.webp', 'imagenes/DSC_2703.webp', 'imagenes/DSC_2704.webp', 'imagenes/DSC_2705.webp', 'imagenes/DSC_2706.webp', 'imagenes/DSC_2707.webp', 'imagenes/DSC_2708.webp', 'imagenes/DSC_2709.webp', 'imagenes/DSC_2710.webp', 'imagenes/DSC_2711.webp', 'imagenes/DSC_2712.webp', 'imagenes/DSC_2713.webp', 'imagenes/DSC_2714.webp', 'imagenes/DSC_2717.webp', 'imagenes/DSC_2718.webp', 'imagenes/DSC_2719.webp', 'imagenes/DSC_2720.webp', 'imagenes/DSC_2721.webp', 'imagenes/DSC_2722.webp', 'imagenes/DSC_2723.webp', 'imagenes/DSC_2724.webp', 'imagenes/DSC_2725.webp', 'imagenes/DSC_2728.webp', 'imagenes/DSC_2729.webp', 'imagenes/DSC_2730.webp', 'imagenes/DSC_2731.webp', 'imagenes/DSC_2732.webp', 'imagenes/DSC_2734.webp', 'imagenes/DSC_2735.webp', 'imagenes/DSC_2736.webp', 'imagenes/DSC_2737.webp', 'imagenes/DSC_2738.webp', 'imagenes/DSC_2739.webp', 'imagenes/DSC_2740.webp', 'imagenes/DSC_2741.webp', 'imagenes/DSC_2742.webp', 'imagenes/DSC_2743.webp', 'imagenes/DSC_2744.webp', 'imagenes/DSC_2746.webp', 'imagenes/DSC_2747.webp', 'imagenes/DSC_2748.webp', 'imagenes/DSC_2749.webp', 'imagenes/DSC_2750.webp', 'imagenes/DSC_2751.webp', 'imagenes/DSC_2752.webp', 'imagenes/DSC_2756.webp', 'imagenes/DSC_2757.webp', 'imagenes/DSC_2758.webp', 'imagenes/DSC_2759.webp', 'imagenes/DSC_2760.webp', 'imagenes/DSC_2761.webp', 'imagenes/DSC_2762.webp', 'imagenes/DSC_2763.webp', 'imagenes/DSC_2764.webp', 'imagenes/DSC_2765.webp', 'imagenes/DSC_2767.webp', 'imagenes/DSC_2769.webp', 'imagenes/DSC_2770.webp', 'imagenes/DSC_2771.webp', 'imagenes/DSC_2772.webp', 'imagenes/DSC_2773.webp', 'imagenes/DSC_2774.webp', 'imagenes/DSC_2775.webp', 'imagenes/DSC_2776.webp', 'imagenes/DSC_2777.webp', 'imagenes/DSC_2778.webp', 'imagenes/DSC_2779.webp', 'imagenes/DSC_2780.webp', 'imagenes/DSC_2781.webp', 'imagenes/DSC_2782.webp', 'imagenes/DSC_2783.webp', 'imagenes/DSC_2784.webp', 'imagenes/DSC_2785.webp', 'imagenes/DSC_2786.webp', 'imagenes/DSC_2787.webp', 'imagenes/DSC_2788.webp', 'imagenes/DSC_2789.webp', 'imagenes/DSC_2790.webp', 'imagenes/DSC_2791.webp', 'imagenes/DSC_2792.webp', 'imagenes/DSC_2793.webp', 'imagenes/DSC_2794.webp', 'imagenes/DSC_2795.webp', 'imagenes/DSC_2796.webp', 'imagenes/DSC_2797.webp', 'imagenes/DSC_2798.webp', 'imagenes/DSC_2799.webp', 'imagenes/DSC_2800.webp', 'imagenes/DSC_2804.webp', 'imagenes/DSC_2805.webp', 'imagenes/DSC_2806.webp', 'imagenes/DSC_2807.webp', 'imagenes/DSC_2808.webp', 'imagenes/DSC_2809.webp', 'imagenes/DSC_2810.webp', 'imagenes/DSC_2811.webp', 'imagenes/DSC_2812.webp', 'imagenes/DSC_2813.webp', 'imagenes/DSC_2814.webp', 'imagenes/DSC_2815.webp', 'imagenes/DSC_2816.webp', 'imagenes/DSC_2817.webp', 'imagenes/DSC_2818.webp', 'imagenes/DSC_2819.webp', 'imagenes/DSC_2820.webp', 'imagenes/DSC_2821.webp', 'imagenes/DSC_2822.webp', 'imagenes/DSC_2823.webp', 'imagenes/DSC_2824.webp', 'imagenes/DSC_2825.webp', 'imagenes/DSC_2826.webp', 'imagenes/DSC_2827.webp', 'imagenes/DSC_2828.webp', 'imagenes/DSC_2829.webp', 'imagenes/DSC_2830.webp', 'imagenes/DSC_2831.webp', 'imagenes/DSC_2832.webp', 'imagenes/DSC_2833.webp', 'imagenes/DSC_2834.webp', 'imagenes/DSC_2835.webp', 'imagenes/DSC_2836.webp', 'imagenes/DSC_2837.webp', 'imagenes/DSC_2839.webp', 'imagenes/DSC_2840.webp', 'imagenes/DSC_2841.webp', 'imagenes/DSC_2842.webp', 'imagenes/DSC_2843.webp', 'imagenes/DSC_2844.webp', 'imagenes/DSC_2845.webp', 'imagenes/DSC_2846.webp', 'imagenes/DSC_2847.webp', 'imagenes/DSC_2848.webp', 'imagenes/DSC_2849.webp', 'imagenes/DSC_2850.webp', 'imagenes/DSC_2851.webp', 'imagenes/DSC_2852.webp', 'imagenes/DSC_2853.webp', 'imagenes/DSC_2854.webp', 'imagenes/DSC_2855.webp', 'imagenes/DSC_2856.webp', 'imagenes/DSC_2857.webp', 'imagenes/DSC_2858.webp', 'imagenes/DSC_2859.webp', 'imagenes/DSC_2860.webp', 'imagenes/DSC_2861.webp', 'imagenes/DSC_2862.webp', 'imagenes/DSC_2863.webp', 'imagenes/DSC_2864.webp', 'imagenes/DSC_2865.webp', 'imagenes/DSC_2866.webp', 'imagenes/DSC_2867.webp', 'imagenes/DSC_2868.webp', 'imagenes/DSC_2869.webp', 'imagenes/DSC_2870.webp', 'imagenes/DSC_2871.webp', 'imagenes/DSC_2872.webp', 'imagenes/DSC_2873.webp', 'imagenes/DSC_2874.webp', 'imagenes/DSC_2875.webp', 'imagenes/DSC_2876.webp', 'imagenes/DSC_2877.webp', 'imagenes/DSC_2878.webp', 'imagenes/DSC_2879.webp', 'imagenes/DSC_2880.webp', 'imagenes/DSC_2881.webp', 'imagenes/DSC_2882.webp', 'imagenes/DSC_2883.webp', 'imagenes/DSC_2884.webp', 'imagenes/DSC_2885.webp', 'imagenes/DSC_2886.webp', 'imagenes/DSC_2887.webp', 'imagenes/DSC_2888.webp', 'imagenes/DSC_2889.webp', 'imagenes/DSC_2890.webp', 'imagenes/DSC_2891.webp', 'imagenes/DSC_2892.webp', 'imagenes/DSC_2893.webp', 'imagenes/DSC_2894.webp', 'imagenes/DSC_2895.webp', 'imagenes/DSC_2896.webp', 'imagenes/DSC_2897.webp', 'imagenes/DSC_2898.webp', 'imagenes/DSC_2899.webp', 'imagenes/DSC_2900.webp', 'imagenes/DSC_2901.webp', 'imagenes/DSC_2902.webp', 'imagenes/DSC_2903.webp', 'imagenes/DSC_2904.webp', 'imagenes/DSC_2905.webp', 'imagenes/DSC_2906.webp', 'imagenes/DSC_2907.webp', 'imagenes/DSC_2908.webp', 'imagenes/DSC_2909.webp', 'imagenes/DSC_2910.webp', 'imagenes/DSC_2911.webp', 'imagenes/DSC_2912.webp', 'imagenes/DSC_2913.webp', 'imagenes/DSC_2914.webp', 'imagenes/DSC_2915.webp', 'imagenes/DSC_2916.webp', 'imagenes/DSC_2917.webp', 'imagenes/DSC_2918.webp', 'imagenes/DSC_2919.webp', 'imagenes/DSC_2920.webp', 'imagenes/DSC_2921.webp', 'imagenes/DSC_2922.webp', 'imagenes/DSC_2923.webp', 'imagenes/DSC_2924.webp', 'imagenes/DSC_2925.webp', 'imagenes/DSC_2926.webp', 'imagenes/DSC_2927.webp', 'imagenes/DSC_2928.webp', 'imagenes/DSC_2929.webp', 'imagenes/DSC_2930.webp', 'imagenes/DSC_2931.webp', 'imagenes/DSC_2932.webp', 'imagenes/DSC_2933.webp', 'imagenes/DSC_2934.webp', 'imagenes/DSC_2935.webp', 'imagenes/DSC_2936.webp', 'imagenes/DSC_2937.webp', 'imagenes/DSC_2938.webp', 'imagenes/DSC_2939.webp', 'imagenes/DSC_2940.webp', 'imagenes/DSC_2941.webp', 'imagenes/DSC_2942.webp', 'imagenes/DSC_2943.webp', 'imagenes/DSC_2944.webp', 'imagenes/DSC_2945.webp', 'imagenes/DSC_2946.webp', 'imagenes/DSC_2947.webp', 'imagenes/DSC_2948.webp', 'imagenes/DSC_2949.webp', 'imagenes/DSC_2950.webp', 'imagenes/DSC_2951.webp', 'imagenes/DSC_2952.webp', 'imagenes/DSC_2953.webp', 'imagenes/DSC_2954.webp', 'imagenes/DSC_2955.webp', 'imagenes/DSC_2956.webp', 'imagenes/DSC_2957.webp', 'imagenes/DSC_2958.webp', 'imagenes/DSC_2959.webp', 'imagenes/DSC_2960.webp', 'imagenes/DSC_2961.webp', 'imagenes/DSC_2962.webp', 'imagenes/DSC_2963.webp', 'imagenes/DSC_2964.webp', 'imagenes/DSC_2965.webp', 'imagenes/DSC_2966.webp', 'imagenes/DSC_2967.webp', 'imagenes/DSC_2968.webp', 'imagenes/DSC_2969.webp', 'imagenes/DSC_2970.webp', 'imagenes/DSC_2971.webp', 'imagenes/DSC_2972.webp', 'imagenes/DSC_2973.webp', 'imagenes/DSC_2974.webp', 'imagenes/DSC_2975.webp', 'imagenes/DSC_2976.webp', 'imagenes/DSC_2977.webp', 'imagenes/DSC_2978.webp', 'imagenes/DSC_2979.webp', 'imagenes/DSC_2980.webp', 'imagenes/DSC_2981.webp', 'imagenes/DSC_2982.webp', 'imagenes/DSC_2983.webp', 'imagenes/DSC_2984.webp', 'imagenes/DSC_2985.webp', 'imagenes/DSC_2986.webp', 'imagenes/DSC_2987.webp', 'imagenes/DSC_2988.webp', 'imagenes/DSC_2989.webp', 'imagenes/DSC_2990.webp', 'imagenes/DSC_2991.webp', 'imagenes/DSC_2992.webp', 'imagenes/DSC_2993.webp', 'imagenes/DSC_2994.webp', 'imagenes/DSC_2995.webp', 'imagenes/DSC_2996.webp', 'imagenes/DSC_2997.webp', 'imagenes/DSC_2998.webp', 'imagenes/DSC_2999.webp', 'imagenes/DSC_3000.webp', 'imagenes/DSC_3001.webp', 'imagenes/DSC_3002.webp', 'imagenes/DSC_3003.webp', 'imagenes/DSC_3004.webp', 'imagenes/DSC_3005.webp', 'imagenes/DSC_3006.webp', 'imagenes/DSC_3007.webp', 'imagenes/DSC_3008.webp', 'imagenes/DSC_3009.webp', 'imagenes/DSC_3010.webp', 'imagenes/DSC_3011.webp', 'imagenes/DSC_3012.webp', 'imagenes/DSC_3013.webp', 'imagenes/DSC_3014.webp', 'imagenes/DSC_3015.webp', 'imagenes/DSC_3016.webp', 'imagenes/DSC_3017.webp', 'imagenes/DSC_3018.webp', 'imagenes/DSC_3019.webp', 'imagenes/DSC_3020.webp', 'imagenes/DSC_3021.webp', 'imagenes/DSC_3022.webp', 'imagenes/DSC_3023.webp', 'imagenes/DSC_3024.webp', 'imagenes/DSC_3025.webp', 'imagenes/DSC_3026.webp', 'imagenes/DSC_3027.webp', 'imagenes/DSC_3028.webp', 'imagenes/DSC_3029.webp', 'imagenes/DSC_3030.webp', 'imagenes/DSC_3031.webp', 'imagenes/DSC_3032.webp', 'imagenes/DSC_3033.webp', 'imagenes/DSC_3034.webp', 'imagenes/DSC_3035.webp', 'imagenes/DSC_3036.webp', 'imagenes/DSC_3037.webp', 'imagenes/DSC_3038.webp', 'imagenes/DSC_3039.webp', 'imagenes/DSC_3040.webp', 'imagenes/DSC_3041.webp', 'imagenes/DSC_3042.webp', 'imagenes/DSC_3043.webp', 'imagenes/DSC_3044.webp', 'imagenes/DSC_3045.webp', 'imagenes/DSC_3046.webp', 'imagenes/DSC_3047.webp', 'imagenes/DSC_3048.webp', 'imagenes/DSC_3049.webp', 'imagenes/DSC_3050.webp', 'imagenes/DSC_3051.webp', 'imagenes/DSC_3052.webp', 'imagenes/DSC_3053.webp', 'imagenes/DSC_3054.webp', 'imagenes/DSC_3055.webp', 'imagenes/DSC_3056.webp', 'imagenes/DSC_3057.webp', 'imagenes/DSC_3058.webp', 'imagenes/DSC_3059.webp', 'imagenes/DSC_3060.webp', 'imagenes/DSC_3061.webp', 'imagenes/DSC_3062.webp', 'imagenes/DSC_3063.webp', 'imagenes/DSC_3064.webp', 'imagenes/DSC_3065.webp', 'imagenes/DSC_3066.webp', 'imagenes/DSC_3067.webp', 'imagenes/DSC_3068.webp', 'imagenes/DSC_3069.webp', 'imagenes/DSC_3070.webp', 'imagenes/DSC_3071.webp', 'imagenes/DSC_3072.webp', 'imagenes/DSC_3073.webp', 'imagenes/DSC_3074.webp', 'imagenes/DSC_3075.webp', 'imagenes/DSC_3076.webp', 'imagenes/DSC_3077.webp', 'imagenes/DSC_3078.webp', 'imagenes/DSC_3079.webp', 'imagenes/DSC_3080.webp', 'imagenes/DSC_3081.webp', 'imagenes/DSC_3082.webp', 'imagenes/DSC_3083.webp', 'imagenes/DSC_3084.webp', 'imagenes/DSC_3085.webp', 'imagenes/DSC_3086.webp', 'imagenes/DSC_3087.webp', 'imagenes/DSC_3088.webp', 'imagenes/DSC_3089.webp', 'imagenes/DSC_3090.webp', 'imagenes/DSC_3091.webp', 'imagenes/DSC_3092.webp', 'imagenes/DSC_3093.webp', 'imagenes/DSC_3094.webp', 'imagenes/DSC_3095.webp', 'imagenes/DSC_3096.webp', 'imagenes/DSC_3097.webp', 'imagenes/DSC_3098.webp', 'imagenes/DSC_3099.webp', 'imagenes/DSC_3100.webp', 'imagenes/DSC_3101.webp', 'imagenes/DSC_3102.webp', 'imagenes/DSC_3103.webp', 'imagenes/DSC_3104.webp', 'imagenes/DSC_3105.webp', 'imagenes/DSC_3106.webp', 'imagenes/DSC_3107.webp', 'imagenes/DSC_3108.webp', 'imagenes/DSC_3109.webp', 'imagenes/DSC_3110.webp', 'imagenes/DSC_3111.webp', 'imagenes/DSC_3112.webp', 'imagenes/DSC_3113.webp', 'imagenes/DSC_3114.webp', 'imagenes/DSC_3115.webp', 'imagenes/DSC_3116.webp', 'imagenes/DSC_3117.webp', 'imagenes/DSC_3118.webp', 'imagenes/DSC_3119.webp', 'imagenes/DSC_3120.webp', 'imagenes/DSC_3121.webp', 'imagenes/DSC_3122.webp', 'imagenes/DSC_3123.webp', 'imagenes/DSC_3124.webp', 'imagenes/DSC_3125.webp', 'imagenes/DSC_3126.webp', 'imagenes/DSC_3127.webp', 'imagenes/DSC_3128.webp', 'imagenes/DSC_3129.webp', 'imagenes/DSC_3130.webp', 'imagenes/DSC_3131.webp', 'imagenes/DSC_3132.webp', 'imagenes/DSC_3133.webp', 'imagenes/DSC_3134.webp', 'imagenes/DSC_3135.webp', 'imagenes/DSC_3136.webp', 'imagenes/DSC_3137.webp', 'imagenes/DSC_3138.webp', 'imagenes/DSC_3139.webp', 'imagenes/DSC_3140.webp', 'imagenes/DSC_3141.webp', 'imagenes/DSC_3142.webp', 'imagenes/DSC_3143.webp', 'imagenes/DSC_3144.webp', 'imagenes/DSC_3145.webp', 'imagenes/DSC_3146.webp', 'imagenes/DSC_3147.webp', 'imagenes/DSC_3148.webp', 'imagenes/DSC_3149.webp', 'imagenes/DSC_3150.webp', 'imagenes/DSC_3151.webp', 'imagenes/DSC_3152.webp', 'imagenes/DSC_3153.webp', 'imagenes/DSC_3154.webp', 'imagenes/DSC_3155.webp', 'imagenes/DSC_3156.webp', 'imagenes/DSC_3157.webp', 'imagenes/DSC_3158.webp', 'imagenes/DSC_3159.webp', 'imagenes/DSC_3160.webp', 'imagenes/DSC_3161.webp', 'imagenes/DSC_3162.webp', 'imagenes/DSC_3163.webp', 'imagenes/DSC_3164.webp', 'imagenes/DSC_3165.webp', 'imagenes/DSC_3166.webp', 'imagenes/DSC_3167.webp', 'imagenes/DSC_3168.webp', 'imagenes/DSC_3169.webp', 'imagenes/DSC_3170.webp', 'imagenes/DSC_3171.webp', 'imagenes/DSC_3172.webp', 'imagenes/DSC_3173.webp', 'imagenes/DSC_3174.webp', 'imagenes/DSC_3175.webp', 'imagenes/DSC_3176.webp', 'imagenes/DSC_3177.webp', 'imagenes/DSC_3178.webp', 'imagenes/DSC_3179.webp', 'imagenes/DSC_3180.webp', 'imagenes/DSC_3181.webp', 'imagenes/DSC_3182.webp', 'imagenes/DSC_3183.webp', 'imagenes/DSC_3184.webp', 'imagenes/DSC_3185.webp', 'imagenes/DSC_3186.webp', 'imagenes/DSC_3187.webp', 'imagenes/DSC_3188.webp', 'imagenes/DSC_3189.webp', 'imagenes/DSC_3190.webp', 'imagenes/DSC_3191.webp', 'imagenes/DSC_3192.webp', 'imagenes/DSC_3193.webp', 'imagenes/DSC_3194.webp', 'imagenes/DSC_3195.webp', 'imagenes/DSC_3196.webp', 'imagenes/DSC_3197.webp', 'imagenes/DSC_3198.webp', 'imagenes/DSC_3199.webp', 'imagenes/DSC_3200.webp', 'imagenes/DSC_3201.webp', 'imagenes/DSC_3202.webp', 'imagenes/DSC_3203.webp', 'imagenes/DSC_3204.webp', 'imagenes/DSC_3205.webp', 'imagenes/DSC_3206.webp', 'imagenes/DSC_3207.webp', 'imagenes/DSC_3208.webp', 'imagenes/DSC_3209.webp', 'imagenes/DSC_3210.webp', 'imagenes/DSC_3211.webp', 'imagenes/DSC_3212.webp', 'imagenes/DSC_3213.webp', 'imagenes/DSC_3214.webp', 'imagenes/DSC_3215.webp', 'imagenes/DSC_3216.webp', 'imagenes/DSC_3217.webp', 'imagenes/DSC_3218.webp', 'imagenes/DSC_3219.webp', 'imagenes/DSC_3220.webp', 'imagenes/DSC_3221.webp', 'imagenes/DSC_3222.webp', 'imagenes/DSC_3223.webp', 'imagenes/DSC_3224.webp', 'imagenes/DSC_3225.webp', 'imagenes/DSC_3226.webp', 'imagenes/DSC_3227.webp', 'imagenes/DSC_3228.webp', 'imagenes/DSC_3229.webp', 'imagenes/DSC_3230.webp', 'imagenes/DSC_3231.webp', 'imagenes/DSC_3232.webp', 'imagenes/DSC_3233.webp', 'imagenes/DSC_3234.webp', 'imagenes/DSC_3235.webp', 'imagenes/DSC_3236.webp', 'imagenes/DSC_3237.webp', 'imagenes/DSC_3238.webp', 'imagenes/DSC_3239.webp', 'imagenes/DSC_3240.webp', 'imagenes/DSC_3241.webp', 'imagenes/DSC_3242.webp', 'imagenes/DSC_3243.webp', 'imagenes/DSC_3244.webp', 'imagenes/DSC_3245.webp', 'imagenes/DSC_3246.webp', 'imagenes/DSC_3247.webp', 'imagenes/DSC_3248.webp', 'imagenes/DSC_3249.webp', 'imagenes/DSC_3250.webp', 'imagenes/DSC_3251.webp', 'imagenes/DSC_3252.webp', 'imagenes/DSC_3253.webp', 'imagenes/DSC_3254.webp', 'imagenes/DSC_3255.webp', 'imagenes/DSC_3256.webp', 'imagenes/DSC_3257.webp', 'imagenes/DSC_3258.webp', 'imagenes/DSC_3259.webp', 'imagenes/DSC_3260.webp', 'imagenes/DSC_3261.webp', 'imagenes/DSC_3262.webp', 'imagenes/DSC_3263.webp', 'imagenes/DSC_3264.webp', 'imagenes/DSC_3265.webp', 'imagenes/DSC_3266.webp', 'imagenes/DSC_3267.webp', 'imagenes/DSC_3268.webp', 'imagenes/DSC_3269.webp', 'imagenes/DSC_3270.webp', 'imagenes/DSC_3271.webp', 'imagenes/DSC_3272.webp', 'imagenes/DSC_3273.webp', 'imagenes/DSC_3274.webp', 'imagenes/DSC_3275.webp', 'imagenes/DSC_3276.webp', 'imagenes/DSC_3277.webp', 'imagenes/DSC_3278.webp', 'imagenes/DSC_3279.webp', 'imagenes/DSC_3280.webp', 'imagenes/DSC_3281.webp', 'imagenes/DSC_3282.webp', 'imagenes/DSC_3283.webp', 'imagenes/DSC_3284.webp', 'imagenes/DSC_3285.webp', 'imagenes/DSC_3286.webp', 'imagenes/DSC_3287.webp', 'imagenes/DSC_3288.webp', 'imagenes/DSC_3289.webp', 'imagenes/DSC_3290.webp', 'imagenes/DSC_3291.webp', 'imagenes/DSC_3292.webp', 'imagenes/DSC_3293.webp', 'imagenes/DSC_3294.webp', 'imagenes/DSC_3295.webp', 'imagenes/DSC_3296.webp', 'imagenes/DSC_3297.webp', 'imagenes/DSC_3298.webp', 'imagenes/DSC_3299.webp', 'imagenes/DSC_3300.webp', 'imagenes/DSC_3301.webp', 'imagenes/DSC_3302.webp', 'imagenes/DSC_3303.webp', 'imagenes/DSC_3304.webp', 'imagenes/DSC_3305.webp', 'imagenes/DSC_3306.webp', 'imagenes/DSC_3307.webp', 'imagenes/DSC_3308.webp', 'imagenes/DSC_3309.webp', 'imagenes/DSC_3310.webp', 'imagenes/DSC_3311.webp', 'imagenes/DSC_3312.webp', 'imagenes/DSC_3313.webp', 'imagenes/DSC_3314.webp', 'imagenes/DSC_3315.webp', 'imagenes/DSC_3321.webp', 'imagenes/DSC_3322.webp', 'imagenes/DSC_3323.webp', 'imagenes/DSC_3324.webp', 'imagenes/DSC_3325.webp', 'imagenes/DSC_3326.webp', 'imagenes/DSC_3327.webp', 'imagenes/DSC_3328.webp', 'imagenes/DSC_3329.webp', 'imagenes/DSC_3330.webp', 'imagenes/DSC_3331.webp', 'imagenes/DSC_3332.webp', 'imagenes/DSC_3333.webp', 'imagenes/DSC_3334.webp', 'imagenes/DSC_3335.webp', 'imagenes/DSC_3336.webp', 'imagenes/DSC_3337.webp', 'imagenes/DSC_3338.webp', 'imagenes/DSC_3339.webp', 'imagenes/DSC_3340.webp', 'imagenes/DSC_3341.webp', 'imagenes/DSC_3342.webp', 'imagenes/DSC_3343.webp', 'imagenes/DSC_3344.webp', 'imagenes/DSC_3345.webp', 'imagenes/DSC_3346.webp', 'imagenes/DSC_3347.webp', 'imagenes/DSC_3348.webp', 'imagenes/DSC_3349.webp', 'imagenes/DSC_3350.webp', 'imagenes/DSC_3351.webp', 'imagenes/DSC_3352.webp', 'imagenes/DSC_3353.webp', 'imagenes/DSC_3354.webp', 'imagenes/DSC_3355.webp', 'imagenes/DSC_3356.webp', 'imagenes/DSC_3357.webp', 'imagenes/DSC_3358.webp', 'imagenes/DSC_3359.webp', 'imagenes/DSC_3360.webp', 'imagenes/DSC_3361.webp', 'imagenes/DSC_3362.webp', 'imagenes/DSC_3363.webp', 'imagenes/DSC_3364.webp', 'imagenes/DSC_3365.webp', 'imagenes/DSC_3366.webp', 'imagenes/DSC_3369.webp', 'imagenes/DSC_3370.webp', 'imagenes/DSC_3371.webp', 'imagenes/DSC_3372.webp', 'imagenes/DSC_3373.webp', 'imagenes/DSC_3374.webp', 'imagenes/DSC_3375.webp', 'imagenes/DSC_3376.webp', 'imagenes/DSC_3377.webp', 'imagenes/DSC_3378.webp', 'imagenes/DSC_3379.webp', 'imagenes/DSC_3380.webp', 'imagenes/DSC_3381.webp', 'imagenes/DSC_3382.webp', 'imagenes/DSC_3383.webp', 'imagenes/DSC_3384.webp', 'imagenes/DSC_3385.webp', 'imagenes/DSC_3386.webp', 'imagenes/DSC_3387.webp', 'imagenes/DSC_3388.webp', 'imagenes/DSC_3389.webp', 'imagenes/DSC_3390.webp', 'imagenes/DSC_3391.webp', 'imagenes/DSC_3392.webp', 'imagenes/DSC_3393.webp', 'imagenes/DSC_3394.webp', 'imagenes/DSC_3396.webp', 'imagenes/DSC_3397.webp', 'imagenes/DSC_3398.webp', 'imagenes/DSC_3399.webp', 'imagenes/DSC_3400.webp', 'imagenes/DSC_3401.webp', 'imagenes/DSC_3402.webp', 'imagenes/DSC_3403.webp', 'imagenes/DSC_3404.webp', 'imagenes/DSC_3405.webp', 'imagenes/DSC_3406.webp', 'imagenes/DSC_3407.webp', 'imagenes/DSC_3408.webp', 'imagenes/DSC_3409.webp', 'imagenes/DSC_3410.webp', 'imagenes/DSC_3411.webp', 'imagenes/DSC_3412.webp', 'imagenes/DSC_3413.webp', 'imagenes/DSC_3414.webp', 'imagenes/DSC_3415.webp', 'imagenes/DSC_3416.webp', 'imagenes/DSC_3417.webp', 'imagenes/DSC_3418.webp', 'imagenes/DSC_3419.webp', 'imagenes/DSC_3420.webp', 'imagenes/DSC_3421.webp', 'imagenes/DSC_3422.webp', 'imagenes/DSC_3423.webp', 'imagenes/DSC_3424.webp', 'imagenes/DSC_3425.webp', 'imagenes/DSC_3426.webp', 'imagenes/DSC_3427.webp', 'imagenes/DSC_3428.webp', 'imagenes/DSC_3431.webp', 'imagenes/DSC_3432.webp', 'imagenes/DSC_3433.webp', 'imagenes/DSC_3434.webp', 'imagenes/DSC_3435.webp', 'imagenes/DSC_3436.webp', 'imagenes/DSC_3437.webp', 'imagenes/DSC_3438.webp', 'imagenes/DSC_3439.webp', 'imagenes/DSC_3440.webp', 'imagenes/DSC_3441.webp', 'imagenes/DSC_3442.webp', 'imagenes/DSC_3443.webp', 'imagenes/DSC_3444.webp', 'imagenes/DSC_3445.webp', 'imagenes/DSC_3446.webp', 'imagenes/DSC_3447.webp', 'imagenes/DSC_3448.webp', 'imagenes/DSC_3449.webp', 'imagenes/DSC_3450.webp', 'imagenes/DSC_3451.webp', 'imagenes/DSC_3452.webp', 'imagenes/DSC_3453.webp', 'imagenes/DSC_3454.webp', 'imagenes/DSC_3455.webp', 'imagenes/DSC_3456.webp', 'imagenes/DSC_3457.webp', 'imagenes/DSC_3458.webp', 'imagenes/DSC_3459.webp', 'imagenes/DSC_3460.webp', 'imagenes/DSC_3461.webp', 'imagenes/DSC_3462.webp', 'imagenes/DSC_3463.webp', 'imagenes/DSC_3464.webp', 'imagenes/DSC_3465.webp', 'imagenes/DSC_3466.webp', 'imagenes/DSC_3467.webp', 'imagenes/DSC_3468.webp', 'imagenes/DSC_3469.webp', 'imagenes/DSC_3470.webp', 'imagenes/DSC_3471.webp', 'imagenes/DSC_3472.webp', 'imagenes/DSC_3473.webp', 'imagenes/DSC_3474.webp', 'imagenes/DSC_3475.webp', 'imagenes/DSC_3476.webp', 'imagenes/DSC_3477.webp', 'imagenes/DSC_3478.webp', 'imagenes/DSC_3479.webp', 'imagenes/DSC_3480.webp', 'imagenes/DSC_3481.webp', 'imagenes/DSC_3482.webp', 'imagenes/DSC_3483.webp', 'imagenes/DSC_3484.webp', 'imagenes/DSC_3485.webp', 'imagenes/DSC_3486.webp', 'imagenes/DSC_3487.webp', 'imagenes/DSC_3488.webp', 'imagenes/DSC_3489.webp', 'imagenes/DSC_3490.webp', 'imagenes/DSC_3491.webp', 'imagenes/DSC_3492.webp', 'imagenes/DSC_3493.webp', 'imagenes/DSC_3494.webp', 'imagenes/DSC_3495.webp', 'imagenes/DSC_3496.webp', 'imagenes/DSC_3497.webp', 'imagenes/DSC_3498.webp', 'imagenes/DSC_3499.webp', 'imagenes/DSC_3500.webp', 'imagenes/DSC_3501.webp', 'imagenes/DSC_3502.webp', 'imagenes/DSC_3503.webp'];
+const STORAGE_KEY = 'xv_melina_estefania_jaime_photo_selections';
+const LIMITES = {
+    ampliacion: null,
+    impresion: null,
+    invitacion: null
+};
+let photoSelections = {};
+let currentPhotoIndex = null;
+let currentFilter = 'all';
+const PAGE_SIZE = 60;
+const PAGE_KEY = 'xv_melina_estefania_jaime_page';
+let currentPage = parseInt(sessionStorage.getItem(PAGE_KEY) || '0', 10);
 
-function getSessionId() {
-    const KEY = 'foro7_sid';
-    let sid = localStorage.getItem(KEY);
-    if (!sid) { sid = crypto.randomUUID(); localStorage.setItem(KEY, sid); }
-    return sid;
-}
-const SESSION_ID = getSessionId();
-let eventoIdCache = null;
-let sbDisponible  = true;
-
-async function sbGetEventoId() {
-    if (eventoIdCache) return eventoIdCache;
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/eventos?slug=eq.${EVENTO_SLUG}&select=id&limit=1`, { headers: SB_HEADERS });
-    const [ev] = await r.json();
-    eventoIdCache = ev?.id || null;
-    return eventoIdCache;
-}
-
-async function sbRegistrarVisita(pagina = 'selector') {
-    try {
-        const evento_id = await sbGetEventoId();
-        if (!evento_id) return;
-        await fetch(`${SUPABASE_URL}/rest/v1/visitas`, {
-            method: 'POST',
-            headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' },
-            body: JSON.stringify({ evento_id, pagina, session_id: SESSION_ID })
-        });
-    } catch(e) {}
-}
-
-// ========================================
-// GLOBAL VARIABLES - XV Años Melina Estefanía
-// ========================================
-// Lista de fotos generada automáticamente
-// Total: 1111 fotos
-// Generado: 2026-03-29 03:11
-const photos = [
-    "imagenes/DSC_2776.webp","imagenes/DSC_2777.webp","imagenes/DSC_2778.webp","imagenes/DSC_2779.webp","imagenes/DSC_2780.webp",
-    "imagenes/DSC_2781.webp","imagenes/DSC_2782.webp","imagenes/DSC_2783.webp","imagenes/DSC_2784.webp","imagenes/DSC_2785.webp",
-    "imagenes/DSC_2786.webp","imagenes/DSC_2787.webp","imagenes/DSC_2788.webp","imagenes/DSC_2789.webp","imagenes/DSC_2790.webp",
-    "imagenes/DSC_2791.webp","imagenes/DSC_2792.webp","imagenes/DSC_2793.webp","imagenes/DSC_2794.webp","imagenes/DSC_2795.webp",
-    "imagenes/DSC_2796.webp","imagenes/DSC_2797.webp","imagenes/DSC_2798.webp","imagenes/DSC_2799.webp","imagenes/DSC_2800.webp",
-    "imagenes/DSC_2801.webp","imagenes/DSC_2802.webp","imagenes/DSC_2803.webp","imagenes/DSC_2804.webp","imagenes/DSC_2805.webp",
-    "imagenes/DSC_2806.webp","imagenes/DSC_2807.webp","imagenes/DSC_2808.webp","imagenes/DSC_2809.webp","imagenes/DSC_2810.webp",
-    "imagenes/DSC_2811.webp","imagenes/DSC_2812.webp","imagenes/DSC_2813.webp","imagenes/DSC_2814.webp","imagenes/DSC_2815.webp",
-    "imagenes/DSC_2816.webp","imagenes/DSC_2817.webp","imagenes/DSC_2818.webp","imagenes/DSC_2819.webp","imagenes/DSC_2820.webp",
-    "imagenes/DSC_2821.webp","imagenes/DSC_2822.webp","imagenes/DSC_2823.webp","imagenes/DSC_2824.webp","imagenes/DSC_2825.webp",
-    "imagenes/DSC_2826.webp","imagenes/DSC_2827.webp","imagenes/DSC_2828.webp","imagenes/DSC_2829.webp","imagenes/DSC_2830.webp",
-    "imagenes/DSC_2831.webp","imagenes/DSC_2832.webp","imagenes/DSC_2833.webp","imagenes/DSC_2834.webp","imagenes/DSC_2835.webp",
-    "imagenes/DSC_2836.webp","imagenes/DSC_2837.webp","imagenes/DSC_2838.webp","imagenes/DSC_2839.webp","imagenes/DSC_2840.webp",
-    "imagenes/DSC_2841.webp","imagenes/DSC_2842.webp","imagenes/DSC_2843.webp","imagenes/DSC_2844.webp","imagenes/DSC_2845.webp",
-    "imagenes/DSC_2846.webp","imagenes/DSC_2847.webp","imagenes/DSC_2848.webp","imagenes/DSC_2849.webp","imagenes/DSC_2850.webp",
-    "imagenes/DSC_2851.webp","imagenes/DSC_2852.webp","imagenes/DSC_2853.webp","imagenes/DSC_2854.webp","imagenes/DSC_2855.webp",
-    "imagenes/DSC_2856.webp","imagenes/DSC_2857.webp","imagenes/DSC_2858.webp","imagenes/DSC_2859.webp","imagenes/DSC_2860.webp",
-    "imagenes/DSC_2861.webp","imagenes/DSC_2862.webp","imagenes/DSC_2863.webp","imagenes/DSC_2864.webp","imagenes/DSC_2865.webp",
-    "imagenes/DSC_2866.webp","imagenes/DSC_2867.webp","imagenes/DSC_2868.webp","imagenes/DSC_2869.webp","imagenes/DSC_2870.webp",
-    "imagenes/DSC_2871.webp","imagenes/DSC_2872.webp","imagenes/DSC_2873.webp","imagenes/DSC_2874.webp","imagenes/DSC_2875.webp",
-    "imagenes/DSC_2876.webp","imagenes/DSC_2877.webp","imagenes/DSC_2878.webp","imagenes/DSC_2879.webp","imagenes/DSC_2880.webp",
-    "imagenes/DSC_2881.webp","imagenes/DSC_2882.webp","imagenes/DSC_2883.webp","imagenes/DSC_2884.webp","imagenes/DSC_2885.webp",
-    "imagenes/DSC_2886.webp","imagenes/DSC_2887.webp","imagenes/DSC_2888.webp","imagenes/DSC_2889.webp","imagenes/DSC_2890.webp",
-    "imagenes/DSC_2891.webp","imagenes/DSC_2892.webp","imagenes/DSC_2893.webp","imagenes/DSC_2894.webp","imagenes/DSC_2895.webp",
-    "imagenes/DSC_2896.webp","imagenes/DSC_2897.webp","imagenes/DSC_2898.webp","imagenes/DSC_2899.webp","imagenes/DSC_2900.webp",
-    "imagenes/DSC_2901.webp","imagenes/DSC_2902.webp","imagenes/DSC_2903.webp","imagenes/DSC_2904.webp","imagenes/DSC_3919.webp",
-    "imagenes/DSC_3920.webp","imagenes/DSC_3921.webp","imagenes/DSC_3922.webp","imagenes/DSC_3923.webp","imagenes/DSC_3924.webp",
-    "imagenes/DSC_3925.webp","imagenes/DSC_3926.webp","imagenes/DSC_3927.webp","imagenes/DSC_3928.webp","imagenes/DSC_3929.webp",
-    "imagenes/DSC_3930.webp","imagenes/DSC_3931.webp","imagenes/DSC_3932.webp","imagenes/DSC_3933.webp","imagenes/DSC_3934.webp",
-    "imagenes/DSC_3935.webp","imagenes/DSC_3936.webp","imagenes/DSC_3937.webp","imagenes/DSC_3938.webp","imagenes/DSC_3939.webp",
-    "imagenes/DSC_3940.webp","imagenes/DSC_3941.webp","imagenes/DSC_3942.webp","imagenes/DSC_3943.webp","imagenes/DSC_3944.webp",
-    "imagenes/DSC_3945.webp","imagenes/DSC_3946.webp","imagenes/DSC_3947.webp","imagenes/DSC_3948.webp","imagenes/DSC_3949.webp",
-    "imagenes/DSC_3950.webp","imagenes/DSC_3951.webp","imagenes/DSC_3952.webp","imagenes/DSC_3953.webp","imagenes/DSC_3954.webp",
-    "imagenes/DSC_3955.webp","imagenes/DSC_3956.webp","imagenes/DSC_3957.webp","imagenes/DSC_3958.webp","imagenes/DSC_3959.webp",
-    "imagenes/DSC_3960.webp","imagenes/DSC_3961.webp","imagenes/DSC_3962.webp","imagenes/DSC_3963.webp","imagenes/DSC_3964.webp",
-    "imagenes/DSC_3965.webp","imagenes/DSC_3966.webp","imagenes/DSC_3967.webp","imagenes/DSC_3968.webp","imagenes/DSC_3969.webp",
-    "imagenes/DSC_3970.webp","imagenes/DSC_3971.webp","imagenes/DSC_3972.webp","imagenes/DSC_3973.webp","imagenes/DSC_3974.webp",
-    "imagenes/DSC_3975.webp","imagenes/DSC_3976.webp","imagenes/DSC_3977.webp","imagenes/DSC_3978.webp","imagenes/DSC_3979.webp",
-    "imagenes/DSC_3980.webp","imagenes/DSC_3981.webp","imagenes/DSC_3982.webp","imagenes/DSC_3983.webp","imagenes/DSC_3984.webp",
-    "imagenes/DSC_3985.webp","imagenes/DSC_3986.webp","imagenes/DSC_3987.webp","imagenes/DSC_3988.webp","imagenes/DSC_3989.webp",
-    "imagenes/DSC_3990.webp","imagenes/DSC_3991.webp","imagenes/DSC_3992.webp","imagenes/DSC_3993.webp","imagenes/DSC_3994.webp",
-    "imagenes/DSC_3995.webp","imagenes/DSC_3996.webp","imagenes/DSC_3997.webp","imagenes/DSC_3998.webp","imagenes/DSC_3999.webp",
-    "imagenes/DSC_4000.webp","imagenes/DSC_4001.webp","imagenes/DSC_4002.webp","imagenes/DSC_4003.webp","imagenes/DSC_4004.webp",
-    "imagenes/DSC_4005.webp","imagenes/DSC_4006.webp","imagenes/DSC_4007.webp","imagenes/DSC_4009.webp","imagenes/DSC_4010.webp",
-    "imagenes/DSC_4011.webp","imagenes/DSC_4012.webp","imagenes/DSC_4013.webp","imagenes/DSC_4014.webp","imagenes/DSC_4015.webp",
-    "imagenes/DSC_4016.webp","imagenes/DSC_4017.webp","imagenes/DSC_4018.webp","imagenes/DSC_4019.webp","imagenes/DSC_4020.webp",
-    "imagenes/DSC_4021.webp","imagenes/DSC_4022.webp","imagenes/DSC_4023.webp","imagenes/DSC_4024.webp","imagenes/DSC_4025.webp",
-    "imagenes/DSC_4026.webp","imagenes/DSC_4027.webp","imagenes/DSC_4028.webp","imagenes/DSC_4029.webp","imagenes/DSC_4030.webp",
-    "imagenes/DSC_4031.webp","imagenes/DSC_4032.webp","imagenes/DSC_4033.webp","imagenes/DSC_4034.webp","imagenes/DSC_4038.webp",
-    "imagenes/DSC_4039.webp","imagenes/DSC_4040.webp","imagenes/DSC_4042.webp","imagenes/DSC_4043.webp","imagenes/DSC_4044.webp",
-    "imagenes/DSC_4045.webp","imagenes/DSC_4046.webp","imagenes/DSC_4048.webp","imagenes/DSC_4049.webp","imagenes/DSC_4050.webp",
-    "imagenes/DSC_4051.webp","imagenes/DSC_4052.webp","imagenes/DSC_4053.webp","imagenes/DSC_4054.webp","imagenes/DSC_4055.webp",
-    "imagenes/DSC_4056.webp","imagenes/DSC_4057.webp","imagenes/DSC_4058.webp","imagenes/DSC_4059.webp","imagenes/DSC_4060.webp",
-    "imagenes/DSC_4061.webp","imagenes/DSC_4062.webp","imagenes/DSC_4064.webp","imagenes/DSC_4065.webp","imagenes/DSC_4066.webp",
-    "imagenes/DSC_4067.webp","imagenes/DSC_4069.webp","imagenes/DSC_4070.webp","imagenes/DSC_4071.webp","imagenes/DSC_4072.webp",
-    "imagenes/DSC_4073.webp","imagenes/DSC_4074.webp","imagenes/DSC_4075.webp","imagenes/DSC_4076.webp","imagenes/DSC_4077.webp",
-    "imagenes/DSC_4078.webp","imagenes/DSC_4079.webp","imagenes/DSC_4080.webp","imagenes/DSC_4081.webp","imagenes/DSC_4082.webp",
-    "imagenes/DSC_4083.webp","imagenes/DSC_4084.webp","imagenes/DSC_4085.webp","imagenes/DSC_4086.webp","imagenes/DSC_4087.webp",
-    "imagenes/DSC_4088.webp","imagenes/DSC_4089.webp","imagenes/DSC_4090.webp","imagenes/DSC_4091.webp","imagenes/DSC_4092.webp",
-    "imagenes/DSC_4093.webp","imagenes/DSC_4094.webp","imagenes/DSC_4095.webp","imagenes/DSC_4096.webp","imagenes/DSC_4097.webp",
-    "imagenes/DSC_4098.webp","imagenes/DSC_4099.webp","imagenes/DSC_4100.webp","imagenes/DSC_4101.webp","imagenes/DSC_4102.webp",
-    "imagenes/DSC_4103.webp","imagenes/DSC_4104.webp","imagenes/DSC_4105.webp","imagenes/DSC_4106.webp","imagenes/DSC_4107.webp",
-    "imagenes/DSC_4108.webp","imagenes/DSC_4109.webp","imagenes/DSC_4110.webp","imagenes/DSC_4111.webp","imagenes/DSC_4112.webp",
-    "imagenes/DSC_4113.webp","imagenes/DSC_4114.webp","imagenes/DSC_4115.webp","imagenes/DSC_4116.webp","imagenes/DSC_4117.webp",
-    "imagenes/DSC_4118.webp","imagenes/DSC_4119.webp","imagenes/DSC_4120.webp","imagenes/DSC_4121.webp","imagenes/DSC_4122.webp",
-    "imagenes/DSC_4123.webp","imagenes/DSC_4124.webp","imagenes/DSC_4125.webp","imagenes/DSC_4126.webp","imagenes/DSC_4127.webp",
-    "imagenes/DSC_4128.webp","imagenes/DSC_4129.webp","imagenes/DSC_4130.webp","imagenes/DSC_4131.webp","imagenes/DSC_4132.webp",
-    "imagenes/DSC_4133.webp","imagenes/DSC_4134.webp","imagenes/DSC_4135.webp","imagenes/DSC_4136.webp","imagenes/DSC_4137.webp",
-    "imagenes/DSC_4138.webp","imagenes/DSC_4139.webp","imagenes/DSC_4140.webp","imagenes/DSC_4141.webp","imagenes/DSC_4142.webp",
-    "imagenes/DSC_4143.webp","imagenes/DSC_4144.webp","imagenes/DSC_4145.webp","imagenes/DSC_4146.webp","imagenes/DSC_4147.webp",
-    "imagenes/DSC_4148.webp","imagenes/DSC_4149.webp","imagenes/DSC_4150.webp","imagenes/DSC_4151.webp","imagenes/DSC_4152.webp",
-    "imagenes/DSC_4153.webp","imagenes/DSC_4154.webp","imagenes/DSC_4155.webp","imagenes/DSC_4156.webp","imagenes/DSC_4157.webp",
-    "imagenes/DSC_4158.webp","imagenes/DSC_4159.webp","imagenes/DSC_4160.webp","imagenes/DSC_4161.webp","imagenes/DSC_4162.webp",
-    "imagenes/DSC_4163.webp","imagenes/DSC_4164.webp","imagenes/DSC_4165.webp","imagenes/DSC_4166.webp","imagenes/DSC_4167.webp",
-    "imagenes/DSC_4168.webp","imagenes/DSC_4169.webp","imagenes/DSC_4170.webp","imagenes/DSC_4171.webp","imagenes/DSC_4172.webp",
-    "imagenes/DSC_4173.webp","imagenes/DSC_4174.webp","imagenes/DSC_4175.webp","imagenes/DSC_4176.webp","imagenes/DSC_4177.webp",
-    "imagenes/DSC_4178.webp","imagenes/DSC_4179.webp","imagenes/DSC_4180.webp","imagenes/DSC_4181.webp","imagenes/DSC_4182.webp",
-    "imagenes/DSC_4183.webp","imagenes/DSC_4184.webp","imagenes/DSC_4185.webp","imagenes/DSC_4186.webp","imagenes/DSC_4187.webp",
-    "imagenes/DSC_4188.webp","imagenes/DSC_4189.webp","imagenes/DSC_4190.webp","imagenes/DSC_4191.webp","imagenes/DSC_4192.webp",
-    "imagenes/DSC_4193.webp","imagenes/DSC_4194.webp","imagenes/DSC_4195.webp","imagenes/DSC_4196.webp","imagenes/DSC_4197.webp",
-    "imagenes/DSC_4198.webp","imagenes/DSC_4199.webp","imagenes/DSC_4200.webp","imagenes/DSC_4201.webp","imagenes/DSC_4202.webp",
-    "imagenes/DSC_4203.webp","imagenes/DSC_4204.webp","imagenes/DSC_4205.webp","imagenes/DSC_4206.webp","imagenes/DSC_4207.webp",
-    "imagenes/DSC_4208.webp","imagenes/DSC_4209.webp","imagenes/DSC_4210.webp","imagenes/DSC_4211.webp","imagenes/DSC_4212.webp",
-    "imagenes/DSC_4213.webp","imagenes/DSC_4214.webp","imagenes/DSC_4215.webp","imagenes/DSC_4216.webp","imagenes/DSC_4217.webp",
-    "imagenes/DSC_4218.webp","imagenes/DSC_4219.webp","imagenes/DSC_4220.webp","imagenes/DSC_4221.webp","imagenes/DSC_4222.webp",
-    "imagenes/DSC_4223.webp","imagenes/DSC_4224.webp","imagenes/DSC_4225.webp","imagenes/DSC_4226.webp","imagenes/DSC_4227.webp",
-    "imagenes/DSC_4228.webp","imagenes/DSC_4229.webp","imagenes/DSC_4230.webp","imagenes/DSC_4231.webp","imagenes/DSC_4232.webp",
-    "imagenes/DSC_4233.webp","imagenes/DSC_4234.webp","imagenes/DSC_4235.webp","imagenes/DSC_4236.webp","imagenes/DSC_4237.webp",
-    "imagenes/DSC_4238.webp","imagenes/DSC_4239.webp","imagenes/DSC_4240.webp","imagenes/DSC_4242.webp","imagenes/DSC_4243.webp",
-    "imagenes/DSC_4244.webp","imagenes/DSC_4245.webp","imagenes/DSC_4246.webp","imagenes/DSC_4247.webp","imagenes/DSC_4248.webp",
-    "imagenes/DSC_4249.webp","imagenes/DSC_4250.webp","imagenes/DSC_4251.webp","imagenes/DSC_4252.webp","imagenes/DSC_4253.webp",
-    "imagenes/DSC_4254.webp","imagenes/DSC_4255.webp","imagenes/DSC_4256.webp","imagenes/DSC_4257.webp","imagenes/DSC_4258.webp",
-    "imagenes/DSC_4259.webp","imagenes/DSC_4260.webp","imagenes/DSC_4261.webp","imagenes/DSC_4262.webp","imagenes/DSC_4263.webp",
-    "imagenes/DSC_4264.webp","imagenes/DSC_4265.webp","imagenes/DSC_4266.webp","imagenes/DSC_4267.webp","imagenes/DSC_4268.webp",
-    "imagenes/DSC_4269.webp","imagenes/DSC_4270.webp","imagenes/DSC_4272.webp","imagenes/DSC_4273.webp","imagenes/DSC_4274.webp",
-    "imagenes/DSC_4275.webp","imagenes/DSC_4276.webp","imagenes/DSC_4277.webp","imagenes/DSC_4278.webp","imagenes/DSC_4279.webp",
-    "imagenes/DSC_4280.webp","imagenes/DSC_4281.webp","imagenes/DSC_4282.webp","imagenes/DSC_4283.webp","imagenes/DSC_4284.webp",
-    "imagenes/DSC_4285.webp","imagenes/DSC_4286.webp","imagenes/DSC_4287.webp","imagenes/DSC_4288.webp","imagenes/DSC_4289.webp",
-    "imagenes/DSC_4290.webp","imagenes/DSC_4291.webp","imagenes/DSC_4292.webp","imagenes/DSC_4293.webp","imagenes/DSC_4294.webp",
-    "imagenes/DSC_4295.webp","imagenes/DSC_4296.webp","imagenes/DSC_4297.webp","imagenes/DSC_4298.webp","imagenes/DSC_4299.webp",
-    "imagenes/DSC_4300.webp","imagenes/DSC_4301.webp","imagenes/DSC_4302.webp","imagenes/DSC_4303.webp","imagenes/DSC_4304.webp",
-    "imagenes/DSC_4305.webp","imagenes/DSC_4306.webp","imagenes/DSC_4308.webp","imagenes/DSC_4310.webp","imagenes/DSC_4311.webp",
-    "imagenes/DSC_4312.webp","imagenes/DSC_4313.webp","imagenes/DSC_4315.webp","imagenes/DSC_4316.webp","imagenes/DSC_4317.webp",
-    "imagenes/DSC_4318.webp","imagenes/DSC_4319.webp","imagenes/DSC_4320.webp","imagenes/DSC_4321.webp","imagenes/DSC_4322.webp",
-    "imagenes/DSC_4323.webp","imagenes/DSC_4324.webp","imagenes/DSC_4325.webp","imagenes/DSC_4326.webp","imagenes/DSC_4327.webp",
-    "imagenes/DSC_4328.webp","imagenes/DSC_4329.webp","imagenes/DSC_4330.webp","imagenes/DSC_4331.webp","imagenes/DSC_4332.webp",
-    "imagenes/DSC_4333.webp","imagenes/DSC_4334.webp","imagenes/DSC_4335.webp","imagenes/DSC_4336.webp","imagenes/DSC_4337.webp",
-    "imagenes/DSC_4338.webp","imagenes/DSC_4339.webp","imagenes/DSC_4340.webp","imagenes/DSC_4341.webp","imagenes/DSC_4342.webp",
-    "imagenes/DSC_4343.webp","imagenes/DSC_4344.webp","imagenes/DSC_4345.webp","imagenes/DSC_4346.webp","imagenes/DSC_4347.webp",
-    "imagenes/DSC_4348.webp","imagenes/DSC_4349.webp","imagenes/DSC_4350.webp","imagenes/DSC_4351.webp","imagenes/DSC_4352.webp",
-    "imagenes/DSC_4353.webp","imagenes/DSC_4354.webp","imagenes/DSC_4355.webp","imagenes/DSC_4356.webp","imagenes/DSC_4357.webp",
-    "imagenes/DSC_4358.webp","imagenes/DSC_4359.webp","imagenes/DSC_4360.webp","imagenes/DSC_4361.webp","imagenes/DSC_4362.webp",
-    "imagenes/DSC_4363.webp","imagenes/DSC_4364.webp","imagenes/DSC_4365.webp","imagenes/DSC_4366.webp","imagenes/DSC_4367.webp",
-    "imagenes/DSC_4368.webp","imagenes/DSC_4369.webp","imagenes/DSC_4370.webp","imagenes/DSC_4371.webp","imagenes/DSC_4372.webp",
-    "imagenes/DSC_4373.webp","imagenes/DSC_4374.webp","imagenes/DSC_4375.webp","imagenes/DSC_4376.webp","imagenes/DSC_4377.webp",
-    "imagenes/DSC_4378.webp","imagenes/DSC_4379.webp","imagenes/DSC_4380.webp","imagenes/DSC_4381.webp","imagenes/DSC_4382.webp",
-    "imagenes/DSC_4383.webp","imagenes/DSC_4384.webp","imagenes/DSC_4385.webp","imagenes/DSC_4386.webp","imagenes/DSC_4387.webp",
-    "imagenes/DSC_4388.webp","imagenes/DSC_4389.webp","imagenes/DSC_4390.webp","imagenes/DSC_4391.webp","imagenes/DSC_4392.webp",
-    "imagenes/DSC_4393.webp","imagenes/DSC_4394.webp","imagenes/DSC_4395.webp","imagenes/DSC_4396.webp","imagenes/DSC_4397.webp",
-    "imagenes/DSC_4398.webp","imagenes/DSC_4399.webp","imagenes/DSC_4400.webp","imagenes/DSC_4401.webp","imagenes/DSC_4402.webp",
-    "imagenes/DSC_4403.webp","imagenes/DSC_4406.webp","imagenes/DSC_4407.webp","imagenes/DSC_4409.webp","imagenes/DSC_4410.webp",
-    "imagenes/DSC_4411.webp","imagenes/DSC_4412.webp","imagenes/DSC_4413.webp","imagenes/DSC_4414.webp","imagenes/DSC_4415.webp",
-    "imagenes/DSC_4416.webp","imagenes/DSC_4417.webp","imagenes/DSC_4418.webp","imagenes/DSC_4419.webp","imagenes/DSC_4420.webp",
-    "imagenes/DSC_4421.webp","imagenes/DSC_4422.webp","imagenes/DSC_4423.webp","imagenes/DSC_4424.webp","imagenes/DSC_4425.webp",
-    "imagenes/DSC_4428.webp","imagenes/DSC_4429.webp","imagenes/DSC_4430.webp","imagenes/DSC_4431.webp","imagenes/DSC_4432.webp",
-    "imagenes/DSC_4433.webp","imagenes/DSC_4434.webp","imagenes/DSC_4435.webp","imagenes/DSC_4436.webp","imagenes/DSC_4437.webp",
-    "imagenes/DSC_4438.webp","imagenes/DSC_4439.webp","imagenes/DSC_4440.webp","imagenes/DSC_4441.webp","imagenes/DSC_4442.webp",
-    "imagenes/DSC_4443.webp","imagenes/DSC_4444.webp","imagenes/DSC_4445.webp","imagenes/DSC_4446.webp","imagenes/DSC_4447.webp",
-    "imagenes/DSC_4448.webp","imagenes/DSC_4449.webp","imagenes/DSC_4450.webp","imagenes/DSC_4451.webp","imagenes/DSC_4452.webp",
-    "imagenes/DSC_4453.webp","imagenes/DSC_4454.webp","imagenes/DSC_4455.webp","imagenes/DSC_4456.webp","imagenes/DSC_4457.webp",
-    "imagenes/DSC_4458.webp","imagenes/DSC_4459.webp","imagenes/DSC_4460.webp","imagenes/DSC_4461.webp","imagenes/DSC_4462.webp",
-    "imagenes/DSC_4463.webp","imagenes/DSC_4464.webp","imagenes/DSC_4465.webp","imagenes/DSC_4466.webp","imagenes/DSC_4467.webp",
-    "imagenes/DSC_4468.webp","imagenes/DSC_4469.webp","imagenes/DSC_4470.webp","imagenes/DSC_4471.webp","imagenes/DSC_4472.webp",
-    "imagenes/DSC_4473.webp","imagenes/DSC_4474.webp","imagenes/DSC_4475.webp","imagenes/DSC_4476.webp","imagenes/DSC_4477.webp",
-    "imagenes/DSC_4478.webp","imagenes/DSC_4479.webp","imagenes/DSC_4480.webp","imagenes/DSC_4481.webp","imagenes/DSC_4482.webp",
-    "imagenes/DSC_4483.webp","imagenes/DSC_4484.webp","imagenes/DSC_4485.webp","imagenes/DSC_4486.webp","imagenes/DSC_4487.webp",
-    "imagenes/DSC_4488.webp","imagenes/DSC_4489.webp","imagenes/DSC_4490.webp","imagenes/DSC_4491.webp","imagenes/DSC_4492.webp",
-    "imagenes/DSC_4493.webp","imagenes/DSC_4494.webp","imagenes/DSC_4495.webp","imagenes/DSC_4496.webp","imagenes/DSC_4497.webp",
-    "imagenes/DSC_4498.webp","imagenes/DSC_4499.webp","imagenes/DSC_4500.webp","imagenes/DSC_4501.webp","imagenes/DSC_4502.webp",
-    "imagenes/DSC_4503.webp","imagenes/DSC_4504.webp","imagenes/DSC_4505.webp","imagenes/DSC_4506.webp","imagenes/DSC_4507.webp",
-    "imagenes/DSC_4508.webp","imagenes/DSC_4509.webp","imagenes/DSC_4510.webp","imagenes/DSC_4511.webp","imagenes/DSC_4512.webp",
-    "imagenes/DSC_4513.webp","imagenes/DSC_4514.webp","imagenes/DSC_4515.webp","imagenes/DSC_4516.webp","imagenes/DSC_4517.webp",
-    "imagenes/DSC_4518.webp","imagenes/DSC_4519.webp","imagenes/DSC_4520.webp","imagenes/DSC_4521.webp","imagenes/DSC_4522.webp",
-    "imagenes/DSC_4523.webp","imagenes/DSC_4524.webp","imagenes/DSC_4525.webp","imagenes/DSC_4526.webp","imagenes/DSC_4527.webp",
-    "imagenes/DSC_4528.webp","imagenes/DSC_4529.webp","imagenes/DSC_4530.webp","imagenes/DSC_4531.webp","imagenes/DSC_4532.webp",
-    "imagenes/DSC_4533.webp","imagenes/DSC_4534.webp","imagenes/DSC_4535.webp","imagenes/DSC_4536.webp","imagenes/DSC_4537.webp",
-    "imagenes/DSC_4538.webp","imagenes/DSC_4539.webp","imagenes/DSC_4540.webp","imagenes/DSC_4541.webp","imagenes/DSC_4542.webp",
-    "imagenes/DSC_4543.webp","imagenes/DSC_4544.webp","imagenes/DSC_4545.webp","imagenes/DSC_4546.webp","imagenes/DSC_4547.webp",
-    "imagenes/DSC_4548.webp","imagenes/DSC_4549.webp","imagenes/DSC_4550.webp","imagenes/DSC_4551.webp","imagenes/DSC_4552.webp",
-    "imagenes/DSC_4553.webp","imagenes/DSC_4554.webp","imagenes/DSC_4555.webp","imagenes/DSC_4556.webp","imagenes/DSC_4557.webp",
-    "imagenes/DSC_4558.webp","imagenes/DSC_4559.webp","imagenes/DSC_4560.webp","imagenes/DSC_4561.webp","imagenes/DSC_4562.webp",
-    "imagenes/DSC_4563.webp","imagenes/DSC_4564.webp","imagenes/DSC_4565.webp","imagenes/DSC_4566.webp","imagenes/DSC_4567.webp",
-    "imagenes/DSC_4568.webp","imagenes/DSC_4569.webp","imagenes/DSC_4570.webp","imagenes/DSC_4571.webp","imagenes/DSC_4572.webp",
-    "imagenes/DSC_4573.webp","imagenes/DSC_4574.webp","imagenes/DSC_4575.webp","imagenes/DSC_4576.webp","imagenes/DSC_4577.webp",
-    "imagenes/DSC_4578.webp","imagenes/DSC_4579.webp","imagenes/DSC_4580.webp","imagenes/DSC_4581.webp","imagenes/DSC_4582.webp",
-    "imagenes/DSC_4583.webp","imagenes/DSC_4584.webp","imagenes/DSC_4585.webp","imagenes/DSC_4586.webp","imagenes/DSC_4587.webp",
-    "imagenes/DSC_4588.webp","imagenes/DSC_4589.webp","imagenes/DSC_4590.webp","imagenes/DSC_4591.webp","imagenes/DSC_4592.webp",
-    "imagenes/DSC_4593.webp","imagenes/DSC_4594.webp","imagenes/DSC_4595.webp","imagenes/DSC_4596.webp","imagenes/DSC_4597.webp",
-    "imagenes/DSC_4598.webp","imagenes/DSC_4599.webp","imagenes/DSC_4600.webp","imagenes/DSC_4601.webp","imagenes/DSC_4602.webp",
-    "imagenes/DSC_4603.webp","imagenes/DSC_4604.webp","imagenes/DSC_4605.webp","imagenes/DSC_4606.webp","imagenes/DSC_4607.webp",
-    "imagenes/DSC_4608.webp","imagenes/DSC_4609.webp","imagenes/DSC_4610.webp","imagenes/DSC_4611.webp","imagenes/DSC_4612.webp",
-    "imagenes/DSC_4613.webp","imagenes/DSC_4614.webp","imagenes/DSC_4615.webp","imagenes/DSC_4616.webp","imagenes/DSC_4617.webp",
-    "imagenes/DSC_4618.webp","imagenes/DSC_4619.webp","imagenes/DSC_4620.webp","imagenes/DSC_4621.webp","imagenes/DSC_4622.webp",
-    "imagenes/DSC_4623.webp","imagenes/DSC_4624.webp","imagenes/DSC_4625.webp","imagenes/DSC_4626.webp","imagenes/DSC_4627.webp",
-    "imagenes/DSC_4628.webp","imagenes/DSC_4629.webp","imagenes/DSC_4630.webp","imagenes/DSC_4631.webp","imagenes/DSC_4632.webp",
-    "imagenes/DSC_4633.webp","imagenes/DSC_4634.webp","imagenes/DSC_4635.webp","imagenes/DSC_4636.webp","imagenes/DSC_4637.webp",
-    "imagenes/DSC_4638.webp","imagenes/DSC_4639.webp","imagenes/DSC_4640.webp","imagenes/DSC_4641.webp","imagenes/DSC_4642.webp",
-    "imagenes/DSC_4643.webp","imagenes/DSC_4644.webp","imagenes/DSC_4645.webp","imagenes/DSC_4646.webp","imagenes/DSC_4647.webp",
-    "imagenes/DSC_4648.webp","imagenes/DSC_4649.webp","imagenes/DSC_4650.webp","imagenes/DSC_4651.webp","imagenes/DSC_4652.webp",
-    "imagenes/DSC_4653.webp","imagenes/DSC_4654.webp","imagenes/DSC_4655.webp","imagenes/DSC_4656.webp","imagenes/DSC_4657.webp",
-    "imagenes/DSC_4658.webp","imagenes/DSC_4659.webp","imagenes/DSC_4660.webp","imagenes/DSC_4661.webp","imagenes/DSC_4662.webp",
-    "imagenes/DSC_4663.webp","imagenes/DSC_4664.webp","imagenes/DSC_4665.webp","imagenes/DSC_4666.webp","imagenes/DSC_4667.webp",
-    "imagenes/DSC_4668.webp","imagenes/DSC_4669.webp","imagenes/DSC_4670.webp","imagenes/DSC_4671.webp","imagenes/DSC_4672.webp",
-    "imagenes/DSC_4673.webp","imagenes/DSC_4674.webp","imagenes/DSC_4675.webp","imagenes/DSC_4676.webp","imagenes/DSC_4677.webp",
-    "imagenes/DSC_4678.webp","imagenes/DSC_4679.webp","imagenes/DSC_4680.webp","imagenes/DSC_4681.webp","imagenes/DSC_4682.webp",
-    "imagenes/DSC_4683.webp","imagenes/DSC_4684.webp","imagenes/DSC_4685.webp","imagenes/DSC_4686.webp","imagenes/DSC_4687.webp",
-    "imagenes/DSC_4688.webp","imagenes/DSC_4689.webp","imagenes/DSC_4690.webp","imagenes/DSC_4691.webp","imagenes/DSC_4692.webp",
-    "imagenes/DSC_4693.webp","imagenes/DSC_4694.webp","imagenes/DSC_4695.webp","imagenes/DSC_4696.webp","imagenes/DSC_4697.webp",
-    "imagenes/DSC_4698.webp","imagenes/DSC_4699.webp","imagenes/DSC_4700.webp","imagenes/DSC_4701.webp","imagenes/DSC_4702.webp",
-    "imagenes/DSC_4703.webp","imagenes/DSC_4704.webp","imagenes/DSC_4705.webp","imagenes/DSC_4706.webp","imagenes/DSC_4707.webp",
-    "imagenes/DSC_4708.webp","imagenes/DSC_4709.webp","imagenes/DSC_4710.webp","imagenes/DSC_4711.webp","imagenes/DSC_4712.webp",
-    "imagenes/DSC_4713.webp","imagenes/DSC_4714.webp","imagenes/DSC_4715.webp","imagenes/DSC_4716.webp","imagenes/DSC_4717.webp",
-    "imagenes/DSC_4718.webp","imagenes/DSC_4719.webp","imagenes/DSC_4720.webp","imagenes/DSC_4721.webp","imagenes/DSC_4722.webp",
-    "imagenes/DSC_4723.webp","imagenes/DSC_4724.webp","imagenes/DSC_4725.webp","imagenes/DSC_4726.webp","imagenes/DSC_4727.webp",
-    "imagenes/DSC_4728.webp","imagenes/DSC_4729.webp","imagenes/DSC_4730.webp","imagenes/DSC_4731.webp","imagenes/DSC_4732.webp",
-    "imagenes/DSC_4733.webp","imagenes/DSC_4734.webp","imagenes/DSC_4735.webp","imagenes/DSC_4736.webp","imagenes/DSC_4737.webp",
-    "imagenes/DSC_4738.webp","imagenes/DSC_4739.webp","imagenes/DSC_4740.webp","imagenes/DSC_4741.webp","imagenes/DSC_4742.webp",
-    "imagenes/DSC_4743.webp","imagenes/DSC_4744.webp","imagenes/DSC_4745.webp","imagenes/DSC_4746.webp","imagenes/DSC_4747.webp",
-    "imagenes/DSC_4748.webp","imagenes/DSC_4749.webp","imagenes/DSC_4750.webp","imagenes/DSC_4751.webp","imagenes/DSC_4752.webp",
-    "imagenes/DSC_4753.webp","imagenes/DSC_4754.webp","imagenes/DSC_4755.webp","imagenes/DSC_4756.webp","imagenes/DSC_4757.webp",
-    "imagenes/DSC_4758.webp","imagenes/DSC_4759.webp","imagenes/DSC_4760.webp","imagenes/DSC_4761.webp","imagenes/DSC_4762.webp",
-    "imagenes/DSC_4763.webp","imagenes/DSC_4764.webp","imagenes/DSC_4765.webp","imagenes/DSC_4766.webp","imagenes/DSC_4767.webp",
-    "imagenes/DSC_4768.webp","imagenes/DSC_4769.webp","imagenes/DSC_4770.webp","imagenes/DSC_4771.webp","imagenes/DSC_4772.webp",
-    "imagenes/DSC_4773.webp","imagenes/DSC_4774.webp","imagenes/DSC_4775.webp","imagenes/DSC_4776.webp","imagenes/DSC_4777.webp",
-    "imagenes/DSC_4778.webp","imagenes/DSC_4779.webp","imagenes/DSC_4780.webp","imagenes/DSC_4781.webp","imagenes/DSC_4782.webp",
-    "imagenes/DSC_4783.webp","imagenes/DSC_4784.webp","imagenes/DSC_4785.webp","imagenes/DSC_4786.webp","imagenes/DSC_4787.webp",
-    "imagenes/DSC_4788.webp","imagenes/DSC_4789.webp","imagenes/DSC_4790.webp","imagenes/DSC_4791.webp","imagenes/DSC_4792.webp",
-    "imagenes/DSC_4793.webp","imagenes/DSC_4794.webp","imagenes/DSC_4795.webp","imagenes/DSC_4796.webp","imagenes/DSC_4797.webp",
-    "imagenes/DSC_4798.webp","imagenes/DSC_4799.webp","imagenes/DSC_4800.webp","imagenes/DSC_4801.webp","imagenes/DSC_4802.webp",
-    "imagenes/DSC_4803.webp","imagenes/DSC_4804.webp","imagenes/DSC_4805.webp","imagenes/DSC_4806.webp","imagenes/DSC_4807.webp",
-    "imagenes/DSC_4809.webp","imagenes/DSC_4810.webp","imagenes/DSC_4811.webp","imagenes/DSC_4812.webp","imagenes/DSC_4813.webp",
-    "imagenes/DSC_4814.webp","imagenes/DSC_4815.webp","imagenes/DSC_4816.webp","imagenes/DSC_4817.webp","imagenes/DSC_4818.webp",
-    "imagenes/DSC_4819.webp","imagenes/DSC_4820.webp","imagenes/DSC_4821.webp","imagenes/DSC_4822.webp","imagenes/DSC_4823.webp",
-    "imagenes/DSC_4824.webp","imagenes/DSC_4825.webp","imagenes/DSC_4826.webp","imagenes/DSC_4827.webp","imagenes/DSC_4828.webp",
-    "imagenes/DSC_4829.webp","imagenes/DSC_4830.webp","imagenes/DSC_4831.webp","imagenes/DSC_4832.webp","imagenes/DSC_4833.webp",
-    "imagenes/DSC_4834.webp","imagenes/DSC_4835.webp","imagenes/DSC_4836.webp","imagenes/DSC_4837.webp","imagenes/DSC_4838.webp",
-    "imagenes/DSC_4839.webp","imagenes/DSC_4840.webp","imagenes/DSC_4841.webp","imagenes/DSC_4843.webp","imagenes/DSC_4844.webp",
-    "imagenes/DSC_4845.webp","imagenes/DSC_4846.webp","imagenes/DSC_4847.webp","imagenes/DSC_4848.webp","imagenes/DSC_4849.webp",
-    "imagenes/DSC_4850.webp","imagenes/DSC_4851.webp","imagenes/DSC_4852.webp","imagenes/DSC_4853.webp","imagenes/DSC_4854.webp",
-    "imagenes/DSC_4855.webp","imagenes/DSC_4856.webp","imagenes/DSC_4857.webp","imagenes/DSC_4859.webp","imagenes/DSC_4860.webp",
-    "imagenes/DSC_4861.webp","imagenes/DSC_4862.webp","imagenes/DSC_4863.webp","imagenes/DSC_4864.webp","imagenes/DSC_4865.webp",
-    "imagenes/DSC_4866.webp","imagenes/DSC_4867.webp","imagenes/DSC_4868.webp","imagenes/DSC_4869.webp","imagenes/DSC_4870.webp",
-    "imagenes/DSC_4871.webp","imagenes/DSC_4872.webp","imagenes/DSC_4873.webp","imagenes/DSC_4875.webp","imagenes/DSC_4876.webp",
-    "imagenes/DSC_4877.webp","imagenes/DSC_4878.webp","imagenes/DSC_4879.webp","imagenes/DSC_4880.webp","imagenes/DSC_4881.webp",
-    "imagenes/DSC_4889.webp","imagenes/DSC_4890.webp","imagenes/DSC_4891.webp","imagenes/DSC_4892.webp","imagenes/DSC_4893.webp",
-    "imagenes/DSC_4894.webp","imagenes/DSC_4895.webp","imagenes/DSC_4896.webp","imagenes/DSC_4897.webp","imagenes/DSC_4898.webp",
-    "imagenes/DSC_4899.webp","imagenes/DSC_4900.webp","imagenes/DSC_4901.webp","imagenes/DSC_4902.webp","imagenes/DSC_4903.webp",
-    "imagenes/DSC_4904.webp","imagenes/DSC_4905.webp","imagenes/DSC_4906.webp","imagenes/DSC_4907.webp","imagenes/DSC_4908.webp",
-    "imagenes/IMG_3451.webp","imagenes/IMG_3452.webp","imagenes/IMG_3453.webp","imagenes/IMG_3454.webp","imagenes/IMG_3455.webp",
-    "imagenes/IMG_3456.webp","imagenes/IMG_3457.webp","imagenes/IMG_3458.webp","imagenes/IMG_3459.webp","imagenes/IMG_3460.webp",
-    "imagenes/IMG_3461.webp","imagenes/IMG_3462.webp","imagenes/IMG_3463.webp","imagenes/IMG_3464.webp","imagenes/IMG_3465.webp",
-    "imagenes/IMG_3466.webp","imagenes/IMG_3467.webp","imagenes/IMG_3470.webp","imagenes/IMG_3471.webp","imagenes/IMG_3472.webp",
-    "imagenes/IMG_3473.webp"
-];
-// Thumbnail helper: usa thumb/ en grid para ahorrar RAM en moviles
+// Thumbnail helper: convierte 'imagenes/foto.webp' -> 'imagenes/thumb/foto.webp'
 function getThumbPath(fullPath) {
     return fullPath.replace('imagenes/', 'imagenes/thumb/');
 }
 
-
-// ── Configuración del evento ──
-const CONFIG = {
-    slug:               'xv-anos-melina-estefania',
-    nombre:             (window.EVENT_CONFIG && window.EVENT_CONFIG.nombre)             || 'Melina Estefanía Jaime Romo',
-    telefono:           (window.EVENT_CONFIG && window.EVENT_CONFIG.telefono)           || '',
-    fechaEvento:        (window.EVENT_CONFIG && window.EVENT_CONFIG.fechaEvento)        || new Date(2026, 2, 28, 17, 0, 0),
-    limiteImpresion:    80,
-    limiteInvitacion:   null,
-    costoFotoAdicional: (window.EVENT_CONFIG && window.EVENT_CONFIG.costoFotoAdicional) || 15,
-};
-
-const STORAGE_KEY = 'xv_anos_melina_estefania_photo_selections';
-const KEY_FILTER   = 'xv_filter';
-const KEY_SCROLL   = 'xv_scroll';
-const KEY_LAST     = 'xv_last_photo';
-const LIMITES = {
-    impresion: CONFIG.limiteImpresion,
-    invitacion: CONFIG.limiteInvitacion
-};
-const COSTO_FOTO_ADICIONAL = CONFIG.costoFotoAdicional;
-
-let photoSelections = {};
-let currentPhotoIndex = null;
-let currentFilter = 'all';
-let touchStartX = 0;
-let touchStartY = 0;
-let scrollPositionBeforeModal = 0;
-let scrollSaveTimer = null;
-let modalOpen = false;
-
 // ========================================
 // LOCAL STORAGE FUNCTIONS
 // ========================================
-function mostrarBannerSinSeleccion() {
-    if (document.getElementById('banner-sin-sel')) return;
-    if (Object.keys(photoSelections).length > 0) return;
-    if (CONFIG.fechaEvento > new Date()) return;
-    const banner = document.createElement('div');
-    banner.id = 'banner-sin-sel';
-    banner.style.cssText = 'background:#78350f;color:#fcd34d;text-align:center;padding:12px 20px;font-size:.88rem;position:sticky;top:0;z-index:200;line-height:1.5;';
-    banner.innerHTML = '📸 <strong>¡Tus fotos están listas!</strong> Aún no has seleccionado ninguna foto. ¡Empieza ahora! <button onclick="this.parentElement.remove()" style="margin-left:12px;background:transparent;border:1px solid #fcd34d;color:#fcd34d;padding:1px 8px;border-radius:4px;cursor:pointer;font-size:.85rem;">×</button>';
-    document.body.insertBefore(banner, document.body.firstChild);
-}
-
-async function loadSelections(isPoll = false) {
-    if (!isPoll) {
-        // Carga inicial: mostrar localStorage de inmediato (cero latencia)
-        try {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) photoSelections = JSON.parse(saved);
-        } catch(e) { photoSelections = {}; }
-    }
-
-    if (!sbDisponible) return;
+function loadSelections() {
     try {
-        const evento_id = await sbGetEventoId();
-        if (!evento_id) { sbDisponible = false; return; }
-
-        const r = await fetch(
-            `${SUPABASE_URL}/rest/v1/selecciones?evento_id=eq.${evento_id}&select=foto_index,impresion,invitacion,descartada`,
-            { headers: SB_HEADERS }
-        );
-        if (!r.ok) throw new Error(r.status);
-        const rows = await r.json();
-
-        const sb = {};
-        rows.forEach(row => {
-            if (row.impresion || row.invitacion || row.descartada)
-                sb[row.foto_index] = { impresion: row.impresion, invitacion: row.invitacion, descartada: row.descartada };
-        });
-
-        if (!isPoll) {
-            // Carga inicial: merge y migrar localStorage a Supabase para que otros lo vean
-            const merged = {...sb};
-            Object.entries(photoSelections).forEach(([idx, sel]) => {
-                if (sel.impresion || sel.invitacion || sel.descartada) merged[idx] = sel;
-            });
-            photoSelections = merged;
-            if (Object.keys(photoSelections).length > 0) {
-                sbSyncSelections().catch(e => console.warn('[Supabase] Migración:', e.message));
-            }
-            sbRegistrarVisita('selector');
-            mostrarBannerSinSeleccion();
-        } else {
-            // Polling: Supabase es la verdad compartida, reemplaza estado local
-            photoSelections = sb;
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            photoSelections = JSON.parse(saved);
         }
-
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(photoSelections)); } catch(e) {}
-        renderGallery(); setupLazyLoad(); updateStats(); updateFilterButtons();
-    } catch(e) {
-        console.warn('[Supabase] Usando localStorage:', e.message);
-        sbDisponible = false;
+    } catch (error) {
+        console.error('Error cargando selecciones:', error);
+        photoSelections = {};
     }
 }
 
-async function saveSelections() {
+function normalizeSelection(selection) {
+    return {
+        ampliacion: !!(selection && selection.ampliacion),
+        impresion: !!(selection && selection.impresion),
+        invitacion: !!(selection && selection.invitacion),
+        descartada: !!(selection && selection.descartada)
+    };
+}
+
+function hasAnySelection(selection) {
+    const normalized = normalizeSelection(selection);
+    return normalized.ampliacion || normalized.impresion || normalized.invitacion || normalized.descartada;
+}
+
+function selectionsAreEqual(a, b) {
+    const left = normalizeSelection(a);
+    const right = normalizeSelection(b);
+    return left.ampliacion === right.ampliacion
+        && left.impresion === right.impresion
+        && left.invitacion === right.invitacion
+        && left.descartada === right.descartada;
+}
+
+function saveSelections(options) {
+    const shouldSync = !options || options.sync !== false;
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(photoSelections));
-    } catch(e) {
+    } catch (error) {
         showToast('Error al guardar. Verifica el espacio del navegador.', 'error');
     }
-    if (!sbDisponible) return;
-    sbSyncSelections().catch(e => console.warn('[Supabase] Sync error:', e.message));
-}
-
-async function sbSyncSelections() {
-    const snapshot = {...photoSelections}; // snapshot BEFORE any await
-    const evento_id = await sbGetEventoId();
-    if (!evento_id) return;
-    const rows = Object.entries(snapshot).map(([idx, sel]) => ({
-        evento_id, session_id: SESSION_ID, foto_index: parseInt(idx),
-        impresion: sel.impresion || false, invitacion: sel.invitacion || false, descartada: sel.descartada || false,
-    }));
-    if (rows.length === 0) return;
-    await fetch(`${SUPABASE_URL}/rest/v1/selecciones?on_conflict=evento_id,foto_index`, {
-        method: 'POST',
-        headers: { ...SB_HEADERS, 'Prefer': 'resolution=merge-duplicates,return=minimal' },
-        body: JSON.stringify(rows)
-    });
-}
-
-function swipeSaveAndNext() {
-    if (currentPhotoIndex === null) return;
-    const selectedCategories = {};
-    let hasAnySelection = false;
-    document.querySelectorAll('.option-btn').forEach(btn => {
-        selectedCategories[btn.dataset.category] = btn.classList.contains('selected');
-        if (btn.classList.contains('selected')) hasAnySelection = true;
-    });
-    if (hasAnySelection) {
-        photoSelections[currentPhotoIndex] = selectedCategories;
-    } else {
-        const idx = currentPhotoIndex;
-        delete photoSelections[idx];
-        if (sbDisponible) sbDeleteSelection(idx).catch(e => console.warn('[Supabase] Delete:', e.message));
+    if (shouldSync && typeof sbUpsertSelections === 'function') {
+        sbUpsertSelections().catch(function(e) { console.warn('[Supabase] Sync:', e.message); });
     }
-    saveSelections();
-    updateCard(currentPhotoIndex);
-    updateStats();
-    updateFilterButtons();
-    navigatePhoto('next');
-    showToast('Guardado ✓', 'success');
 }
 
-function swipeClearAndNext() {
-    if (currentPhotoIndex === null) return;
-    const idx = currentPhotoIndex;
-    if (photoSelections[idx]) {
-        delete photoSelections[idx];
-        if (sbDisponible) sbDeleteSelection(idx).catch(e => console.warn('[Supabase] Delete:', e.message));
-        saveSelections();
-        updateCard(idx);
-        updateStats();
-        updateFilterButtons();
-    }
-    document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-    navigatePhoto('next');
-    showToast('Selección quitada', 'success');
-}
-
-async function sbDeleteSelection(foto_index) {
-    const evento_id = await sbGetEventoId();
-    if (!evento_id) return;
-    await fetch(
-        `${SUPABASE_URL}/rest/v1/selecciones?evento_id=eq.${evento_id}&foto_index=eq.${foto_index}`,
-        { method: 'DELETE', headers: SB_HEADERS }
-    );
-}
-
-async function clearAllSelections() {
+function clearAllSelections() {
     if (confirm('¿Estás seguro de que quieres borrar TODAS las selecciones? Esta acción no se puede deshacer.')) {
-        // Borrar de Supabase primero
-        if (sbDisponible) {
-            try {
-                const evento_id = await sbGetEventoId();
-                if (evento_id) {
-                    await fetch(
-                        `${SUPABASE_URL}/rest/v1/selecciones?evento_id=eq.${evento_id}`,
-                        { method: 'DELETE', headers: SB_HEADERS }
-                    );
-                }
-            } catch(e) { console.warn('[Supabase] Error al borrar:', e.message); }
-        }
         photoSelections = {};
-        try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+        try { localStorage.setItem(STORAGE_KEY, '{}'); } catch(e) {}
+        if (typeof sbDeleteAll === 'function') {
+            sbDeleteAll().catch(function(e) { console.warn('[Supabase] DeleteAll:', e.message); });
+        }
         renderGallery();
-        setupLazyLoad();
         updateStats();
         updateFilterButtons();
         showToast('Todas las selecciones han sido eliminadas', 'success');
@@ -472,6 +89,7 @@ async function clearAllSelections() {
 // ========================================
 function getStats() {
     const stats = {
+        ampliacion: 0,
         impresion: 0,
         invitacion: 0,
         descartada: 0,
@@ -479,6 +97,7 @@ function getStats() {
     };
 
     Object.values(photoSelections).forEach(selection => {
+        if (selection.ampliacion) stats.ampliacion++;
         if (selection.impresion) stats.impresion++;
         if (selection.invitacion) stats.invitacion++;
         if (selection.descartada) stats.descartada++;
@@ -492,59 +111,117 @@ function getStats() {
 function updateStats() {
     const stats = getStats();
 
-    document.getElementById('countImpresion').textContent =
-        LIMITES.impresion ? `${stats.impresion}/${LIMITES.impresion}` : stats.impresion;
+    document.getElementById('countAmpliacion').textContent = stats.ampliacion;
+    document.getElementById('countImpresion').textContent = stats.impresion;
     document.getElementById('countInvitacion').textContent = stats.invitacion;
     document.getElementById('countDescartada').textContent = stats.descartada;
     document.getElementById('countSinClasificar').textContent = stats.sinClasificar;
-
-    const fotosAdicionales = Math.max(0, stats.impresion - LIMITES.impresion);
-    const costoExtra = fotosAdicionales * COSTO_FOTO_ADICIONAL;
-
-    const extraCostDisplay = document.getElementById('extraCostDisplay');
-    if (extraCostDisplay) {
-        if (fotosAdicionales > 0) {
-            extraCostDisplay.style.display = 'block';
-            document.getElementById('extraCostAmount').textContent = `$${costoExtra} MXN`;
-            document.getElementById('extraCostDetail').textContent = `${fotosAdicionales} foto${fotosAdicionales > 1 ? 's' : ''} adicional${fotosAdicionales > 1 ? 'es' : ''} x $${COSTO_FOTO_ADICIONAL}`;
-        } else {
-            extraCostDisplay.style.display = 'none';
-        }
-    }
-
-    const impresionCard = document.querySelector('.stat-card.impresion');
-
-    if (impresionCard) {
-        if (stats.impresion > LIMITES.impresion) {
-            impresionCard.style.borderColor = '#ff9800';
-            impresionCard.style.backgroundColor = 'rgba(255, 152, 0, 0.1)';
-        } else if (stats.impresion === LIMITES.impresion) {
-            impresionCard.style.borderColor = '#4caf50';
-            impresionCard.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
-        } else {
-            impresionCard.style.borderColor = '';
-            impresionCard.style.backgroundColor = '';
-        }
-    }
 }
 
 // ========================================
 // GALLERY FUNCTIONS
 // ========================================
+function getTotalPages() {
+    return Math.ceil(photos.length / PAGE_SIZE);
+}
+
+function getPagePhotos() {
+    const start = currentPage * PAGE_SIZE;
+    return { start, end: Math.min(start + PAGE_SIZE, photos.length) };
+}
+
+function goToPage(page) {
+    const total = getTotalPages();
+    if (page < 0) page = 0;
+    if (page >= total) page = total - 1;
+    currentPage = page;
+    try { sessionStorage.setItem(PAGE_KEY, String(currentPage)); } catch(e) {}
+    renderGallery();
+    updateStats();
+    updateFilterButtons();
+    window.scrollTo({ top: document.querySelector('.gallery-section').offsetTop - 10, behavior: 'smooth' });
+}
+
+function renderPagination(container) {
+    const totalPages = getTotalPages();
+    if (totalPages <= 1) return;
+
+    const { start, end } = getPagePhotos();
+    const nav = document.createElement('div');
+    nav.className = 'pagination-nav';
+    nav.style.cssText = 'grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:16px 0;';
+
+    const btnStyle = 'border:none;padding:10px 18px;border-radius:25px;font-size:.95rem;font-weight:600;cursor:pointer;font-family:Lato,sans-serif;transition:all .2s;';
+
+    if (currentPage > 0) {
+        const prev = document.createElement('button');
+        prev.textContent = '← Anterior';
+        prev.style.cssText = btnStyle + 'background:#8b6f47;color:#fff;';
+        prev.addEventListener('click', () => goToPage(currentPage - 1));
+        nav.appendChild(prev);
+    }
+
+    const maxBtns = 7;
+    let pageStart = Math.max(0, currentPage - 3);
+    let pageEnd = Math.min(totalPages, pageStart + maxBtns);
+    if (pageEnd - pageStart < maxBtns) pageStart = Math.max(0, pageEnd - maxBtns);
+
+    for (let i = pageStart; i < pageEnd; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i + 1;
+        const isActive = i === currentPage;
+        btn.style.cssText = btnStyle + (isActive
+            ? 'background:#d4a373;color:#fff;transform:scale(1.1);'
+            : 'background:#eee;color:#333;');
+        if (!isActive) btn.addEventListener('click', () => goToPage(i));
+        nav.appendChild(btn);
+    }
+
+    if (currentPage < totalPages - 1) {
+        const next = document.createElement('button');
+        next.textContent = 'Siguiente →';
+        next.style.cssText = btnStyle + 'background:#8b6f47;color:#fff;';
+        next.addEventListener('click', () => goToPage(currentPage + 1));
+        nav.appendChild(next);
+    }
+
+    const info = document.createElement('div');
+    info.style.cssText = 'grid-column:1/-1;text-align:center;color:#888;font-size:.85rem;padding:4px 0;';
+    info.textContent = `Fotos ${start + 1}–${end} de ${photos.length}`;
+
+    container.appendChild(info);
+    container.appendChild(nav);
+}
+
 function renderGallery() {
     const grid = document.getElementById('photosGrid');
     if (!grid) return;
+    const topPag = document.getElementById('paginationTop');
+    const bottomPag = document.getElementById('paginationBottom');
 
     grid.innerHTML = '';
+    if (topPag) topPag.innerHTML = '';
+    if (bottomPag) bottomPag.innerHTML = '';
 
     if (photos.length === 0) {
-        grid.innerHTML = '<div class="no-photos-message">Las fotos estarán disponibles después del evento (28 de marzo de 2026)</div>';
+        grid.innerHTML = '<div class="no-photos-message">No hay fotos disponibles aún.</div>';
         return;
     }
 
-    photos.forEach((photo, index) => {
+    // Validar página actual
+    const totalPages = getTotalPages();
+    if (currentPage >= totalPages) currentPage = totalPages - 1;
+    if (currentPage < 0) currentPage = 0;
+
+    // Paginación arriba
+    if (topPag) renderPagination(topPag);
+
+    const { start, end } = getPagePhotos();
+
+    for (let index = start; index < end; index++) {
+        const photo = photos[index];
         const selection = photoSelections[index] || {};
-        const hasAny = selection.impresion || selection.invitacion || selection.descartada;
+        const hasAny = selection.ampliacion || selection.impresion || selection.invitacion || selection.descartada;
 
         const card = document.createElement('div');
         card.className = 'photo-card';
@@ -554,6 +231,7 @@ function renderGallery() {
             card.classList.add('has-descartada');
         } else {
             const categories = [];
+            if (selection.ampliacion) categories.push('ampliacion');
             if (selection.impresion) categories.push('impresion');
             if (selection.invitacion) categories.push('invitacion');
 
@@ -567,6 +245,7 @@ function renderGallery() {
         let badgesHTML = '';
         if (hasAny) {
             badgesHTML = '<div class="photo-badges">';
+            if (selection.ampliacion) badgesHTML += '<span class="badge badge-ampliacion">🖼️ Ampliación</span>';
             if (selection.impresion) badgesHTML += '<span class="badge badge-impresion">📸 Impresión</span>';
             if (selection.invitacion) badgesHTML += '<span class="badge badge-invitacion">💌 Invitación</span>';
             if (selection.descartada) badgesHTML += '<span class="badge badge-descartada">❌ Descartada</span>';
@@ -576,7 +255,7 @@ function renderGallery() {
         const displayNumber = `Foto ${index + 1}`;
         const mediaHTML = `
             <div class="photo-image-container">
-                <img data-src="${photo}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'/%3E" alt="${displayNumber}" class="lazy-img">
+                <img src="${getThumbPath(photo)}" alt="${displayNumber}" loading="lazy">
             </div>
         `;
 
@@ -588,51 +267,11 @@ function renderGallery() {
 
         card.addEventListener('click', () => openModal(index));
         grid.appendChild(card);
-    });
-
-    applyFilter();
-}
-
-// ========================================
-// LAZY LOADER CON COLA (máx 4 concurrentes — evita throttle de GitHub en iOS)
-// ========================================
-let lazyObserver = null;
-let lazyQueue = [];
-let lazyActive = 0;
-const LAZY_MAX = 4;
-
-function lazyLoadNext() {
-    while (lazyActive < LAZY_MAX && lazyQueue.length > 0) {
-        const img = lazyQueue.shift();
-        if (!img.dataset.src || img.classList.contains('lazy-loaded')) continue;
-        lazyActive++;
-        img.onload = img.onerror = () => { lazyActive--; lazyLoadNext(); };
-        img.src = img.dataset.src;
-        img.classList.add('lazy-loaded');
     }
-}
 
-function setupLazyLoad() {
-    if (lazyObserver) lazyObserver.disconnect();
-    lazyQueue = [];
-    lazyActive = 0;
-
-    lazyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                lazyObserver.unobserve(img);
-                if (!img.classList.contains('lazy-loaded')) {
-                    lazyQueue.push(img);
-                    lazyLoadNext();
-                }
-            }
-        });
-    }, { rootMargin: '300px 0px' });
-
-    document.querySelectorAll('img.lazy-img:not(.lazy-loaded)').forEach(img => {
-        lazyObserver.observe(img);
-    });
+    // Paginación abajo
+    if (bottomPag) renderPagination(bottomPag);
+    applyFilter();
 }
 
 // ========================================
@@ -650,6 +289,9 @@ function applyFilter() {
             case 'all':
                 show = true;
                 break;
+            case 'ampliacion':
+                show = selection.ampliacion === true;
+                break;
             case 'impresion':
                 show = selection.impresion === true;
                 break;
@@ -660,7 +302,7 @@ function applyFilter() {
                 show = selection.descartada === true;
                 break;
             case 'sin-clasificar':
-                show = !selection.impresion && !selection.invitacion && !selection.descartada;
+                show = !selection.ampliacion && !selection.impresion && !selection.invitacion && !selection.descartada;
                 break;
         }
 
@@ -680,23 +322,17 @@ function setFilter(filter) {
     if (activeBtn) {
         activeBtn.classList.add('active');
     }
-    try { localStorage.setItem(KEY_FILTER, filter); } catch (e) {}
 }
 
 function updateFilterButtons() {
     const stats = getStats();
 
-    const btnAll = document.getElementById('btnFilterAll');
-    const btnImpresion = document.getElementById('btnFilterImpresion');
-    const btnInvitacion = document.getElementById('btnFilterInvitacion');
-    const btnDescartada = document.getElementById('btnFilterDescartada');
-    const btnSinClasificar = document.getElementById('btnFilterSinClasificar');
-
-    if (btnAll) btnAll.textContent = `Todas (${photos.length})`;
-    if (btnImpresion) btnImpresion.textContent = `Impresión (${stats.impresion})`;
-    if (btnInvitacion) btnInvitacion.textContent = `Invitación (${stats.invitacion})`;
-    if (btnDescartada) btnDescartada.textContent = `Descartadas (${stats.descartada})`;
-    if (btnSinClasificar) btnSinClasificar.textContent = `Sin Clasificar (${stats.sinClasificar})`;
+    document.getElementById('btnFilterAll').textContent = `Todas (${photos.length})`;
+    document.getElementById('btnFilterAmpliacion').textContent = `Ampliación (${stats.ampliacion})`;
+    document.getElementById('btnFilterImpresion').textContent = `Impresión (${stats.impresion})`;
+    document.getElementById('btnFilterInvitacion').textContent = `Invitación (${stats.invitacion})`;
+    document.getElementById('btnFilterDescartada').textContent = `Descartadas (${stats.descartada})`;
+    document.getElementById('btnFilterSinClasificar').textContent = `Sin Clasificar (${stats.sinClasificar})`;
 }
 
 // ========================================
@@ -704,7 +340,6 @@ function updateFilterButtons() {
 // ========================================
 function openModal(index) {
     currentPhotoIndex = index;
-    try { localStorage.setItem(KEY_LAST, index); } catch (e) {}
     const modal = document.getElementById('photoModal');
     const modalImageContainer = document.querySelector('.modal-image-container');
     const modalPhotoNumber = document.getElementById('modalPhotoNumber');
@@ -714,8 +349,10 @@ function openModal(index) {
 
     modalPhotoNumber.textContent = displayNumber;
 
-    document.getElementById('modalImage').src = photo;
-    document.getElementById('modalImage').alt = displayNumber;
+    modalImageContainer.innerHTML = `
+        <img id="modalImage" src="${photo}" alt="${displayNumber}">
+        <div class="modal-photo-number" id="modalPhotoNumber">${displayNumber}</div>
+    `;
 
     const selection = photoSelections[index] || {};
 
@@ -726,18 +363,15 @@ function openModal(index) {
 
     modal.classList.add('active');
     updateNavigationButtons();
-
-    modalOpen = true;
     document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
+    saveCurrentSelections();
+    renderGallery();
     const modal = document.getElementById('photoModal');
     modal.classList.remove('active');
-
-    document.body.style.overflow = '';
-    modalOpen = false;
-
+    document.body.style.overflow = 'auto';
     currentPhotoIndex = null;
 }
 
@@ -768,24 +402,45 @@ function saveCurrentSelections() {
     if (currentPhotoIndex === null) return;
 
     const selectedCategories = {};
-    let hasAnySelection = false;
-
     document.querySelectorAll(".option-btn").forEach(btn => {
         const category = btn.dataset.category;
-        const isSelected = btn.classList.contains("selected");
-        selectedCategories[category] = isSelected;
-        if (isSelected) hasAnySelection = true;
+        selectedCategories[category] = btn.classList.contains("selected");
     });
 
-    if (hasAnySelection) {
-        photoSelections[currentPhotoIndex] = selectedCategories;
-    } else {
-        delete photoSelections[currentPhotoIndex];
-    }
-
-    saveSelections();
+    persistPhotoSelection(currentPhotoIndex, selectedCategories);
     updateStats();
     updateFilterButtons();
+}
+
+function persistPhotoSelection(index, selection, options) {
+    const previousSelection = photoSelections[index] || {};
+    const normalized = normalizeSelection(selection);
+    const changed = !selectionsAreEqual(previousSelection, normalized);
+    const silent = options && options.silent;
+
+    if (!changed) {
+        saveSelections({ sync: false });
+        return false;
+    }
+
+    if (hasAnySelection(normalized)) {
+        photoSelections[index] = normalized;
+        saveSelections({ sync: false });
+        if (typeof sbSaveSelection === 'function') {
+            sbSaveSelection(index, normalized).catch(function(e) { console.warn('[Supabase] Save:', e.message); });
+        } else if (typeof sbUpsertSelections === 'function') {
+            sbUpsertSelections().catch(function(e) { console.warn('[Supabase] Sync:', e.message); });
+        }
+    } else {
+        delete photoSelections[index];
+        saveSelections({ sync: false });
+        if (typeof sbDeleteSelection === 'function') {
+            sbDeleteSelection(index).catch(function(e) { console.warn('[Supabase] Delete:', e.message); });
+        }
+    }
+
+    if (!silent) showToast('Selección actualizada', 'success');
+    return true;
 }
 
 function updateNavigationButtons() {
@@ -798,102 +453,57 @@ function updateNavigationButtons() {
     }
 }
 
-function updateCard(index) {
-    const card = document.querySelector(`.photo-card[data-index="${index}"]`);
-    if (!card) return;
-
-    const selection = photoSelections[index] || {};
-    const hasAny = selection.impresion || selection.invitacion || selection.descartada;
-
-    // Recalcular clases de color
-    card.className = 'photo-card';
-    if (selection.descartada) {
-        card.classList.add('has-descartada');
-    } else {
-        const cats = [];
-        if (selection.impresion) cats.push('impresion');
-        if (selection.invitacion) cats.push('invitacion');
-        if (cats.length > 1) card.classList.add('has-multiple');
-        else if (cats.length === 1) card.classList.add(`has-${cats[0]}`);
-    }
-
-    // Actualizar badges sin tocar el <img>
-    const existing = card.querySelector('.photo-badges');
-    if (existing) existing.remove();
-    if (hasAny) {
-        const badges = document.createElement('div');
-        badges.className = 'photo-badges';
-        if (selection.impresion) badges.innerHTML += '<span class="badge badge-impresion">📸 Impresión</span>';
-        if (selection.invitacion) badges.innerHTML += '<span class="badge badge-invitacion">💌 Invitación</span>';
-        if (selection.descartada) badges.innerHTML += '<span class="badge badge-descartada">❌ Descartada</span>';
-        card.appendChild(badges);
-    }
-
-    // Aplicar filtro actual
-    let show = false;
-    switch (currentFilter) {
-        case 'all': show = true; break;
-        case 'impresion': show = selection.impresion === true; break;
-        case 'invitacion': show = selection.invitacion === true; break;
-        case 'descartada': show = selection.descartada === true; break;
-        case 'sin-clasificar': show = !selection.impresion && !selection.invitacion && !selection.descartada; break;
-    }
-    card.classList.toggle('hidden', !show);
-}
-
 function saveModalSelection() {
     if (currentPhotoIndex === null) return;
 
     const selectedCategories = {};
-    let hasAnySelection = false;
-
     document.querySelectorAll('.option-btn').forEach(btn => {
         const category = btn.dataset.category;
-        const isSelected = btn.classList.contains('selected');
-        selectedCategories[category] = isSelected;
-        if (isSelected) hasAnySelection = true;
+        selectedCategories[category] = btn.classList.contains('selected');
     });
 
-    if (hasAnySelection) {
-        photoSelections[currentPhotoIndex] = selectedCategories;
-    } else {
-        delete photoSelections[currentPhotoIndex];
-        if (sbDisponible) sbDeleteSelection(currentPhotoIndex).catch(e => console.warn('[Supabase] Delete:', e.message));
-    }
-
-    saveSelections();
-    updateCard(currentPhotoIndex);   // solo actualiza esa tarjeta, sin recargar imágenes
+    persistPhotoSelection(currentPhotoIndex, selectedCategories, { silent: true });
+    renderGallery();
     updateStats();
     updateFilterButtons();
     closeModal();
     showToast('Selección guardada correctamente', 'success');
 }
 
+function deleteCurrentSelection() {
+    if (currentPhotoIndex === null) return;
+    const displayNumber = currentPhotoIndex + 1;
+    if (!confirm('¿Borrar la selección de la foto ' + displayNumber + '? Esta acción se sincronizará con todos los dispositivos.')) {
+        return;
+    }
+    persistPhotoSelection(currentPhotoIndex, {}, { silent: true });
+    document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+    renderGallery();
+    updateStats();
+    updateFilterButtons();
+    closeModal();
+    showToast('Selección borrada', 'success');
+}
+
 // ========================================
 // EXPORT FUNCTIONS
 // ========================================
 function exportToJSON() {
-    const stats = getStats();
-    const fotosAdicionales = Math.max(0, stats.impresion - LIMITES.impresion);
-    const costoExtra = fotosAdicionales * COSTO_FOTO_ADICIONAL;
-
     const exportData = {
-        evento: 'XV Años - Melina Estefanía Jaime Romo',
+        evento: 'XV Años — Melina Estefania Jaime',
         fecha_exportacion: new Date().toISOString(),
         total_fotos: photos.length,
-        estadisticas: stats,
-        fotos_incluidas: LIMITES.impresion,
-        fotos_adicionales: fotosAdicionales,
-        costo_adicional: costoExtra,
+        estadisticas: getStats(),
         selecciones: []
     };
 
     photos.forEach((photo, index) => {
         const selection = photoSelections[index];
-        if (selection && (selection.impresion || selection.invitacion || selection.descartada)) {
+        if (selection && (selection.ampliacion || selection.impresion || selection.invitacion || selection.descartada)) {
             exportData.selecciones.push({
                 numero_foto: index + 1,
                 archivo: photo,
+                ampliacion: selection.ampliacion || false,
                 impresion: selection.impresion || false,
                 invitacion: selection.invitacion || false,
                 descartada: selection.descartada || false
@@ -905,7 +515,7 @@ function exportToJSON() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `seleccion-fotos-xv-melina-estefania-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `seleccion-fotos-xv-melina-estefania-jaime-${new Date().toISOString().split('T')[0]}.json`;
     a.click();
     URL.revokeObjectURL(url);
 
@@ -914,26 +524,39 @@ function exportToJSON() {
 
 function generateTextSummary() {
     const stats = getStats();
-    const fotosAdicionales = Math.max(0, stats.impresion - LIMITES.impresion);
-    const costoExtra = fotosAdicionales * COSTO_FOTO_ADICIONAL;
-
-    let summary = '🎉 SELECCIÓN DE FOTOS - XV AÑOS MELINA ESTEFANÍA JAIME ROMO\n';
+    let summary = '💍 SELECCIÓN DE FOTOS - XV AÑOS MELINA ESTEFANIA JAIME\n';
     summary += '═══════════════════════════════════════════════════\n\n';
-    summary += `📋 SEGÚN CONTRATO:\n`;
-    summary += `   📸 Impresión incluida: ${LIMITES.impresion} fotos\n\n`;
-    summary += `📊 RESUMEN ACTUAL:\n`;
-    summary += `   Total de fotos disponibles: ${photos.length}\n`;
-    summary += `   📸 Para impresión: ${stats.impresion}/${LIMITES.impresion} ${stats.impresion === LIMITES.impresion ? '✓' : stats.impresion > LIMITES.impresion ? '⚠️ ADICIONALES' : '⚠️ FALTA'}\n`;
+    summary += `📊 RESUMEN:\n`;
+    summary += `   Total de fotos: ${photos.length}\n`;
+    summary += `   🖼️  Para ampliación: ${stats.ampliacion}\n`;
+    summary += `   📸 Para impresión: ${stats.impresion}\n`;
     summary += `   💌 Para invitación: ${stats.invitacion}\n`;
     summary += `   ❌ Descartadas: ${stats.descartada}\n`;
     summary += `   ⭕ Sin clasificar: ${stats.sinClasificar}\n\n`;
 
-    if (fotosAdicionales > 0) {
-        summary += `💰 COSTO ADICIONAL:\n`;
-        summary += `   Fotos adicionales: ${fotosAdicionales}\n`;
-        summary += `   Costo por foto: $${COSTO_FOTO_ADICIONAL} MXN\n`;
-        summary += `   TOTAL ADICIONAL: $${costoExtra} MXN\n\n`;
-    }
+    const categories = ['ampliacion', 'impresion', 'invitacion', 'descartada'];
+    const categoryNames = {
+        ampliacion: '🖼️  AMPLIACIÓN',
+        impresion: '📸 IMPRESIÓN',
+        invitacion: '💌 INVITACIÓN',
+        descartada: '❌ DESCARTADAS'
+    };
+
+    categories.forEach(category => {
+        const photosInCategory = [];
+        photos.forEach((photo, index) => {
+            const selection = photoSelections[index];
+            if (selection && selection[category]) {
+                photosInCategory.push(index + 1);
+            }
+        });
+
+        if (photosInCategory.length > 0) {
+            summary += `${categoryNames[category]}:\n`;
+            summary += `   Fotos: ${photosInCategory.join(', ')}\n`;
+            summary += `   Total: ${photosInCategory.length}\n\n`;
+        }
+    });
 
     summary += `\n📅 Generado el: ${new Date().toLocaleString('es-MX')}\n`;
 
@@ -955,8 +578,6 @@ function copyToClipboard() {
 // ========================================
 function showToast(message, type = 'success') {
     const toast = document.getElementById('toast');
-    if (!toast) return;
-
     toast.textContent = message;
     toast.className = `toast ${type}`;
 
@@ -973,99 +594,59 @@ function showToast(message, type = 'success') {
 // EVENT LISTENERS
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
+    loadSelections();
     renderGallery();
-    setupLazyLoad();
     updateStats();
     updateFilterButtons();
-    loadSelections();
 
-    // Restaurar filtro y scroll de la sesión anterior
-    const savedFilter = localStorage.getItem(KEY_FILTER);
-    if (savedFilter) setFilter(savedFilter);
-    const savedScroll = parseInt(localStorage.getItem(KEY_SCROLL) || '0');
-    if (savedScroll > 0) {
-        requestAnimationFrame(() => requestAnimationFrame(() => window.scrollTo(0, savedScroll)));
-    }
+    document.getElementById('btnFilterAll').addEventListener('click', () => setFilter('all'));
+    document.getElementById('btnFilterAmpliacion').addEventListener('click', () => setFilter('ampliacion'));
+    document.getElementById('btnFilterImpresion').addEventListener('click', () => setFilter('impresion'));
+    document.getElementById('btnFilterInvitacion').addEventListener('click', () => setFilter('invitacion'));
+    document.getElementById('btnFilterDescartada').addEventListener('click', () => setFilter('descartada'));
+    document.getElementById('btnFilterSinClasificar').addEventListener('click', () => setFilter('sin-clasificar'));
 
-    // Filter buttons
-    const btnFilterAll = document.getElementById('btnFilterAll');
-    const btnFilterImpresion = document.getElementById('btnFilterImpresion');
-    const btnFilterInvitacion = document.getElementById('btnFilterInvitacion');
-    const btnFilterDescartada = document.getElementById('btnFilterDescartada');
-    const btnFilterSinClasificar = document.getElementById('btnFilterSinClasificar');
+    document.getElementById('btnFilterAll').dataset.filter = 'all';
+    document.getElementById('btnFilterAmpliacion').dataset.filter = 'ampliacion';
+    document.getElementById('btnFilterImpresion').dataset.filter = 'impresion';
+    document.getElementById('btnFilterInvitacion').dataset.filter = 'invitacion';
+    document.getElementById('btnFilterDescartada').dataset.filter = 'descartada';
+    document.getElementById('btnFilterSinClasificar').dataset.filter = 'sin-clasificar';
 
-    if (btnFilterAll) btnFilterAll.addEventListener('click', () => setFilter('all'));
-    if (btnFilterImpresion) btnFilterImpresion.addEventListener('click', () => setFilter('impresion'));
-    if (btnFilterInvitacion) btnFilterInvitacion.addEventListener('click', () => setFilter('invitacion'));
-    if (btnFilterDescartada) btnFilterDescartada.addEventListener('click', () => setFilter('descartada'));
-    if (btnFilterSinClasificar) btnFilterSinClasificar.addEventListener('click', () => setFilter('sin-clasificar'));
+    document.getElementById('btnFilterAll').classList.add('active');
 
-    // Action buttons
-    const btnExport = document.getElementById('btnExport');
-    const btnShare = document.getElementById('btnShare');
-    const btnClear = document.getElementById('btnClear');
+    document.getElementById('btnExport').addEventListener('click', exportToJSON);
+    document.getElementById('btnShare').addEventListener('click', copyToClipboard);
+    document.getElementById('btnClear').addEventListener('click', clearAllSelections);
 
-    if (btnExport) btnExport.addEventListener('click', exportToJSON);
-    if (btnShare) btnShare.addEventListener('click', copyToClipboard);
-    if (btnClear) btnClear.addEventListener('click', clearAllSelections);
+    document.querySelector('.modal-close').addEventListener('click', closeModal);
+    document.getElementById('btnCancelSelection').addEventListener('click', closeModal);
+    document.getElementById('btnSaveSelection').addEventListener('click', saveModalSelection);
+    document.getElementById('btnDeleteSelection').addEventListener('click', deleteCurrentSelection);
 
-    // Modal controls
-    const modalClose = document.querySelector('.modal-close');
-    const btnCancelSelection = document.getElementById('btnCancelSelection');
-    const btnSaveSelection = document.getElementById('btnSaveSelection');
-
-    if (modalClose) modalClose.addEventListener('click', closeModal);
-    if (btnCancelSelection) btnCancelSelection.addEventListener('click', closeModal);
-    if (btnSaveSelection) btnSaveSelection.addEventListener('click', saveModalSelection);
-
-    // Option buttons
     document.querySelectorAll('.option-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             btn.classList.toggle('selected');
         });
     });
 
-    // Close modal on outside click + swipe táctil para Android
-    const photoModal = document.getElementById('photoModal');
-    if (photoModal) {
-        photoModal.addEventListener('click', (e) => {
-            if (e.target.id === 'photoModal') {
-                closeModal();
-            }
-        });
+    document.getElementById('photoModal').addEventListener('click', (e) => {
+        if (e.target.id === 'photoModal') {
+            closeModal();
+        }
+    });
 
-        // Swipe: derecha = guardar selección + siguiente, izquierda = quitar + siguiente
-        photoModal.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
+    document.getElementById('btnPrevPhoto').addEventListener('click', () => {
+        navigatePhoto('prev');
+    });
 
-        photoModal.addEventListener('touchend', (e) => {
-            const deltaX = e.changedTouches[0].clientX - touchStartX;
-            const deltaY = e.changedTouches[0].clientY - touchStartY;
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-                if (deltaX > 0) swipeSaveAndNext();
-                else swipeClearAndNext();
-            }
-        }, { passive: true });
-    }
+    document.getElementById('btnNextPhoto').addEventListener('click', () => {
+        navigatePhoto('next');
+    });
 
-    // Navigation buttons
-    const btnPrevPhoto = document.getElementById('btnPrevPhoto');
-    const btnNextPhoto = document.getElementById('btnNextPhoto');
-
-    if (btnPrevPhoto) btnPrevPhoto.addEventListener('click', () => navigatePhoto('prev'));
-    if (btnNextPhoto) btnNextPhoto.addEventListener('click', () => navigatePhoto('next'));
-
-    // Polling: sincronizar con otros usuarios cada 30 segundos
-    if (sbDisponible) {
-        setInterval(() => { if (!modalOpen) loadSelections(true); }, 30000);
-    }
-
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         const modal = document.getElementById('photoModal');
-        if (modal && modal.classList.contains('active')) {
+        if (modal.classList.contains('active')) {
             if (e.key === 'Escape') {
                 closeModal();
             } else if (e.key === 'Enter') {
@@ -1080,137 +661,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Guardar scroll con debounce
-window.addEventListener('scroll', () => {
-    if (modalOpen) return;
-    clearTimeout(scrollSaveTimer);
-    scrollSaveTimer = setTimeout(() => {
-        try { localStorage.setItem(KEY_SCROLL, window.scrollY); } catch (e) {}
-    }, 300);
-}, { passive: true });
-
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        saveSelections();
-        try { localStorage.setItem(KEY_SCROLL, window.scrollY); } catch (e) {}
+        saveSelections({ sync: false });
+    } else if (typeof sbRefreshSelections === 'function') {
+        sbRefreshSelections().catch(function(e) { console.warn('[Supabase] Refresh:', e.message); });
     }
 });
 
-window.addEventListener('beforeunload', () => {
-    saveSelections();
-    try { localStorage.setItem(KEY_SCROLL, window.scrollY); } catch (e) {}
+window.addEventListener('beforeunload', (e) => {
+    saveSelections({ sync: false });
 });
-
-// Registrar Service Worker
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-}
 
 // ========================================
 // DOWNLOAD FUNCTIONS
 // ========================================
-function downloadCurrentPhoto() {
+async function downloadCurrentPhoto() {
     if (currentPhotoIndex === null) return;
-    var url = photos[currentPhotoIndex];
+    const url = photos[currentPhotoIndex];
     if (!url) return;
-    var filename = 'foto-' + (currentPhotoIndex + 1) + '.jpg';
-    showToast('Preparando descarga...', 'success');
-
-    var img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = function() {
-        var canvas = document.createElement('canvas');
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-
-        // Marca de agua diagonal repetida
-        var wmText = 'FORO 7  \u00b7  FOTOGRAF\u00cdA Y VIDEO';
-        var fontSize = Math.max(canvas.width, canvas.height) * 0.035;
-        ctx.save();
-        ctx.font = 'bold ' + fontSize + 'px sans-serif';
-        ctx.fillStyle = 'rgba(255,255,255,0.3)';
-        ctx.strokeStyle = 'rgba(0,0,0,0.18)';
-        ctx.lineWidth = fontSize * 0.06;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate(-Math.PI / 6);
-        var textW = ctx.measureText(wmText).width;
-        var spacingY = fontSize * 4;
-        var spacingX = textW + fontSize * 2;
-        var diag = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
-        for (var y = -diag; y < diag; y += spacingY) {
-            for (var x = -diag; x < diag; x += spacingX) {
-                ctx.strokeText(wmText, x, y);
-                ctx.fillText(wmText, x, y);
-            }
+    const filename = 'foto-' + (currentPhotoIndex + 1) + '.jpg';
+    showToast('Descargando...', 'success');
+    try {
+        const resp = await fetch(url, { mode: 'cors' });
+        const blob = await resp.blob();
+        let finalBlob = blob;
+        if (!blob.type.includes('jpeg') && !blob.type.includes('jpg')) {
+            const bmp = await createImageBitmap(blob);
+            const canvas = document.createElement('canvas');
+            canvas.width = bmp.width; canvas.height = bmp.height;
+            canvas.getContext('2d').drawImage(bmp, 0, 0);
+            finalBlob = await new Promise(function(res){ canvas.toBlob(res, 'image/jpeg', 0.95); });
         }
-        ctx.restore();
-
-        canvas.toBlob(function(blob) {
-            var a = document.createElement('a');
-            var objUrl = URL.createObjectURL(blob);
-            a.href = objUrl;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            setTimeout(function() { URL.revokeObjectURL(objUrl); }, 3000);
-            sbRegistrarVisita('descarga');
-            showToast('Descargando ' + filename, 'success');
-        }, 'image/jpeg', 0.92);
-    };
-    img.onerror = function() {
-        // Fallback: usar la imagen ya cargada en el modal
-        var modalImg = document.getElementById('modalImage');
-        if (modalImg && modalImg.naturalWidth > 0) {
-            var canvas = document.createElement('canvas');
-            canvas.width = modalImg.naturalWidth;
-            canvas.height = modalImg.naturalHeight;
-            var ctx = canvas.getContext('2d');
-            ctx.drawImage(modalImg, 0, 0);
-            var wmText = 'FORO 7  \u00b7  FOTOGRAF\u00cdA Y VIDEO';
-            var fontSize = Math.max(canvas.width, canvas.height) * 0.035;
-            ctx.save();
-            ctx.font = 'bold ' + fontSize + 'px sans-serif';
-            ctx.fillStyle = 'rgba(255,255,255,0.3)';
-            ctx.strokeStyle = 'rgba(0,0,0,0.18)';
-            ctx.lineWidth = fontSize * 0.06;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.translate(canvas.width / 2, canvas.height / 2);
-            ctx.rotate(-Math.PI / 6);
-            var textW = ctx.measureText(wmText).width;
-            var spacingY = fontSize * 4;
-            var spacingX = textW + fontSize * 2;
-            var diag = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
-            for (var y = -diag; y < diag; y += spacingY) {
-                for (var x = -diag; x < diag; x += spacingX) {
-                    ctx.strokeText(wmText, x, y);
-                    ctx.fillText(wmText, x, y);
-                }
-            }
-            ctx.restore();
-            canvas.toBlob(function(blob) {
-                var a = document.createElement('a');
-                var objUrl = URL.createObjectURL(blob);
-                a.href = objUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                setTimeout(function() { URL.revokeObjectURL(objUrl); }, 3000);
-                sbRegistrarVisita('descarga');
-                showToast('Descargando ' + filename, 'success');
-            }, 'image/jpeg', 0.92);
-        } else {
-            window.open(url, '_blank');
-            showToast('Abriendo foto...', 'success');
-        }
-    };
-    img.src = url;
+        const a = document.createElement('a');
+        const objUrl = URL.createObjectURL(finalBlob);
+        a.href = objUrl; a.download = filename;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function(){ URL.revokeObjectURL(objUrl); }, 2000);
+        sbRegistrarVisita('descarga');
+        showToast('Descargando ' + filename, 'success');
+    } catch(e) {
+        window.open(url, '_blank');
+        showToast('Abriendo foto...', 'success');
+    }
 }
 
 function downloadAndClose() {
